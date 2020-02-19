@@ -12,6 +12,7 @@ using Nature.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nature.Models;
 
 namespace Nature
 {
@@ -31,10 +32,20 @@ namespace Nature
 					options.UseSqlServer(
 				Configuration.GetConnectionString("DefaultConnection")));
 
+			AddIdentityProperties(services);
+			AddRepositories(services);
+
+			services.AddControllersWithViews();
+			services.AddRazorPages();
+			services.AddMvc();
+		}
+
+		private static void AddIdentityProperties(IServiceCollection services)
+		{
 			services.AddIdentity<IdentityUser, IdentityRole>()
-				.AddDefaultTokenProviders()
-				.AddDefaultUI()
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+					.AddDefaultTokenProviders()
+					.AddDefaultUI()
+					.AddEntityFrameworkStores<ApplicationDbContext>();
 
 			services.Configure<IdentityOptions>(options => {
 				options.Password.RequireDigit = true;
@@ -42,10 +53,21 @@ namespace Nature
 				options.Password.RequireNonAlphanumeric = true;
 				options.User.RequireUniqueEmail = true;
 			});
+		}
 
-			services.AddControllersWithViews();
-			services.AddRazorPages();
-			services.AddMvc();
+		private static void AddRepositories(IServiceCollection services)
+		{
+			services.AddTransient<IRepository<Contacts>, ContactsRepository>();
+
+			services.AddTransient<IRepository<ServiceCategory>, ServiceCategoriesRepository>();
+			services.AddTransient<IRepository<Service>, ServicesRepository>();
+
+			services.AddTransient<IRepository<DoctorCategory>, DoctorCategoriesRepository>();
+			services.AddTransient<IRepository<Doctor>, DoctorsRepository>();
+
+			services.AddTransient<IRepository<News>, NewsRepository>();
+			services.AddTransient<IRepository<AboutUs>, AboutUsRepository>();
+			services.AddTransient<IRepository<Contacts>, ContactsRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
