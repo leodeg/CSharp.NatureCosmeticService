@@ -19,7 +19,8 @@
   <ItemGroup>
     <Folder Include="Controllers\Api\" />
     <Folder Include="Components\" />
-    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\img\doctors\" />
+    <Folder Include="wwwroot\img\news\" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ else
 	<h2>Edit: @Model.Service.Title</h2>
 }
 
-<form asp-controller="Services" asp-action="Save" method="post" role="form">
+<form asp-controller="Services" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
 	<div asp-validation-summary="All" class="text-danger"></div>
 
 	<input asp-for="@Model.Service.Id" type="hidden" />
@@ -53,10 +53,9 @@ else
 	</div>
 
 	<div class="form-group">
-		<label asp-for="@Model.Service.Image" class="col-md-2 col-form-label"></label>
+		<label asp-for="@Model.Service.ImagePath" class="col-md-2 col-form-label"></label>
 		<div class="col-md-5">
-			<input asp-for="@Model.Service.Image" type="file" class="form-control-file" />
-			<span asp-validation-for="@Model.Service.Image" class="text-danger"></span>
+			<input type="file" name="file" class="form-control-file" />
 		</div>
 	</div>
 

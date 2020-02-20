@@ -28,6 +28,6 @@ namespace Nature.Models
 		[DataType(DataType.MultilineText)]
 		public string Description { get; set; }
 
-		public byte[] Image { get; set; }
+		public string ImagePath { get; set; }
 	}
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nature.Models;
 using Nature.Models.ViewModels;
@@ -12,11 +15,13 @@ namespace Nature.Controllers
 	{
 		private readonly IRepository<Service> _repository;
 		private readonly IRepository<ServiceCategory> _categories;
+		private readonly IHostingEnvironment _environment;
 
-		public ServicesController(IRepository<Service> repository, IRepository<ServiceCategory> categories)
+		public ServicesController(IRepository<Service> repository, IRepository<ServiceCategory> categories, IHostingEnvironment environment)
 		{
 			_repository = repository;
 			_categories = categories;
+			_environment = environment;
 		}
 
 		public IActionResult Index()
@@ -38,7 +43,7 @@ namespace Nature.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Save(ServicesViewModel model)
+		public async Task<ActionResult> Save(ServicesViewModel model, IFormFile file)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -46,11 +51,38 @@ namespace Nature.Controllers
 				return View("ServicesForm", model);
 			}
 
+			if (file != null && file.Length > 0 && !string.IsNullOrWhiteSpace(file.FileName))
+			{
+				SaveImageToLocalFiles(model.Service, file);
+			}
+
 			if (model.Service.Id == 0)
 				_repository.Create(model.Service);
 			else _repository.Update(model.Service);
 
 			return RedirectToAction("Index", "Services");
+		}
+
+		private void SaveImageToLocalFiles(Service service, IFormFile file)
+		{
+			var imagePath = @"\img\services\";
+			var uploadPath = _environment.WebRootPath + imagePath;
+			if (Directory.Exists(uploadPath))
+				Directory.CreateDirectory(uploadPath);
+
+			var uniqFileName = Guid.NewGuid().ToString();
+			var fileName = Path.GetFileName(uniqFileName + "." + file.FileName.Split(".")[1].ToLower());
+			string fullPath = uploadPath + fileName;
+
+			imagePath += @"\";
+			var filePath = @".." + Path.Combine(imagePath, fileName);
+
+			using (var fileStream = new FileStream(fullPath, FileMode.Create))
+			{
+				file.CopyTo(fileStream);
+			}
+
+			service.ImagePath = filePath;
 		}
 
 		public ActionResult Edit(int id)

@@ -38,7 +38,7 @@ namespace Nature.Models
 			if (item == null)
 				throw new ArgumentNullException();
 
-			var oldItem = context.Services.Include(item => item.ServiceCategory).SingleOrDefault(item => item.Id == item.Id);
+			var oldItem = context.Services.Include(item => item.ServiceCategory).SingleOrDefault(i => i.Id == item.Id);
 
 			if (oldItem == null)
 				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);
@@ -47,7 +47,9 @@ namespace Nature.Models
 
 			oldItem.Price = item.Price;
 			oldItem.Description = item.Description;
-			oldItem.Image = item.Image;
+
+			if (!string.IsNullOrWhiteSpace(item.ImagePath))
+				oldItem.ImagePath = item.ImagePath;
 
 			oldItem.ServiceCategoryId = oldItem.ServiceCategoryId;
 			oldItem.ServiceCategory = oldItem.ServiceCategory;
