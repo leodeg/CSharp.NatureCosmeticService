@@ -13,6 +13,7 @@ namespace Nature.Models
 		[Key]
 		public int Id { get; set; }
 
+		[Required]
 		[ForeignKey("ServiceCategory")]
 		public int ServiceCategoryId { get; set; }
 		public virtual ServiceCategory ServiceCategory { get; set; }
@@ -21,6 +22,7 @@ namespace Nature.Models
 		[MaxLength(255)]
 		public string Title { get; set; }
 
+		[Required]
 		public decimal Price { get; set; }
 
 		[DataType(DataType.MultilineText)]

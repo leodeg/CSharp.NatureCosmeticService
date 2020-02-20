@@ -35,6 +35,7 @@ namespace Nature
 			AddIdentityProperties(services);
 			AddRepositories(services);
 
+			services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 			services.AddControllersWithViews();
 			services.AddRazorPages();
 			services.AddMvc();

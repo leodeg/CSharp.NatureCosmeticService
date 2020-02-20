@@ -35,7 +35,7 @@ namespace Nature.Models
 
 		public void Update(ServiceCategory item)
 		{
-			var oldItem = context.ServiceCategories.SingleOrDefault(item => item.Id == item.Id);
+			var oldItem = context.ServiceCategories.SingleOrDefault(i => i.Id == item.Id);
 
 			if (oldItem == null)
 				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);

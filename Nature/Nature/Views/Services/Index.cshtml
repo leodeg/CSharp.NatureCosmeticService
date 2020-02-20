@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Service>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<p>
+	<a class="btn btn-dark" name="Index" asp-controller="ServiceCategories" asp-action="Index">Manage Categories</a>
+	<a class="btn btn-dark" name="Index" asp-controller="Services" asp-action="New">New Service</a>
+</p>
+
+@if (!@Model.Any())
+{
+	<h3>No services for now.</h3>
+}
+else
+{
+
+}
