@@ -19,7 +19,7 @@ namespace Nature.Controllers
 
 		public IActionResult Index()
 		{
-			var categories = _repository.Get();
+			var categories = _repository.Get().OrderBy(c => c.Title);
 			return View("Index", categories);
 		}
 

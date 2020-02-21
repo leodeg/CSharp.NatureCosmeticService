@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DoctorCategory>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Doctor Categories</h1>
+
+<p>
+	<a class="btn btn-dark" name="New" asp-controller="DoctorCategories" asp-action="New">New</a>
+</p>
+
+<table id="serviceCategories" class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Any())
+		{
+			@foreach (var category in Model)
+			{
+				<tr>
+					<th>@category.Title</th>
+					<th>
+						<a class="btn btn-dark" name="Edit" asp-controller="DoctorCategories" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+						<a class="btn btn-dark" name="Details" asp-controller="DoctorCategories" asp-action="Remove" asp-route-id="@category.Id">Remove</a>
+					</th>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+

@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Api\" />
-    <Folder Include="Views\Doctors\" />
     <Folder Include="wwwroot\img\doctors\" />
     <Folder Include="wwwroot\img\news\" />
   </ItemGroup>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Doctor>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<div class="container">
+	<p>
+		<a class="btn btn-dark" name="Index" asp-controller="DoctorCategories" asp-action="Index">Manage Categories</a>
+		<a class="btn btn-dark" name="Index" asp-controller="Doctors" asp-action="New">New Doctor</a>
+	</p>
+</div>
+
+<div class="row">
+	@if (!@Model.Any())
+	{
+		<h3>No any doctors information for now.</h3>
+	}
+	else
+	{
+
+		@foreach (var service in Model)
+		{
+			<partial name="DoctorPreviewPartial" model="@service" />
+		}
+	}
+</div>

@@ -25,6 +25,10 @@ namespace Nature.Models
 		{
 			return context.DoctorCategories.FirstOrDefault(item => item.Id == id);
 		}
+		public DoctorCategory Get(string title)
+		{
+			return context.DoctorCategories.FirstOrDefault(c => c.Title == title);
+		}
 
 		public void Create(DoctorCategory item)
 		{
@@ -37,7 +41,7 @@ namespace Nature.Models
 			if (item == null)
 				throw new ArgumentNullException();
 
-			var oldItem = context.DoctorCategories.SingleOrDefault(item => item.Id == item.Id);
+			var oldItem = context.DoctorCategories.SingleOrDefault(i => i.Id == item.Id);
 
 			if (oldItem == null)
 				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);

@@ -29,6 +29,9 @@ namespace Nature.Models
 
 		public void Create(Doctor item)
 		{
+			if (item.Contacts != null)
+				context.Contacts.Add(item.Contacts);
+
 			context.Doctors.Add(item);
 			context.SaveChanges();
 		}
@@ -47,31 +50,29 @@ namespace Nature.Models
 			oldItem.LastName = item.LastName;
 			oldItem.MiddleName = item.MiddleName;
 			oldItem.Description = item.Description;
-			oldItem.Image = item.Image;
 
-			oldItem.DoctorCategoryId = item.DoctorCategoryId;
-			oldItem.DoctorCategory = item.DoctorCategory;
+			if (!string.IsNullOrWhiteSpace(item.ImagePath))
+				oldItem.ImagePath = item.ImagePath;
+
+			if (item.DoctorCategoryId != 0)
+				oldItem.DoctorCategoryId = item.DoctorCategoryId;
 
 			if (oldItem.Contacts != null && item.Contacts != null)
 			{
-				UpdateContacts(oldItem.Contacts, item.Contacts);
+				oldItem.Contacts.Phone = item.Contacts.Phone;
+				oldItem.Contacts.Email = item.Contacts.Email;
+				oldItem.Contacts.Address = item.Contacts.Address;
+				oldItem.Contacts.Country = item.Contacts.Country;
+				oldItem.Contacts.City = item.Contacts.City;
 			}
-			else
+			else if (item.Contacts != null)
 			{
-				oldItem.ContactsId = item.ContactsId;
+				oldItem.ContactsId = item.Contacts.Id;
 				oldItem.Contacts = item.Contacts;
+				context.Contacts.Add(item.Contacts);
 			}
 
 			context.SaveChanges();
-		}
-
-		private void UpdateContacts(Contacts oldInfo, Contacts newInfo)
-		{
-			oldInfo.Phone = newInfo.Phone;
-			oldInfo.Email = newInfo.Email;
-			oldInfo.Address = newInfo.Address;
-			oldInfo.Country = newInfo.Country;
-			oldInfo.City = newInfo.City;
 		}
 
 		public bool Delete(int id)
@@ -79,6 +80,10 @@ namespace Nature.Models
 			var item = context.Doctors.SingleOrDefault(item => item.Id == id);
 			if (item != null)
 			{
+				var contacts = context.Contacts.SingleOrDefault(i => i.Id == item.ContactsId);
+				if (contacts != null)
+					context.Contacts.Remove(contacts);
+
 				context.Doctors.Remove(item);
 				context.SaveChanges();
 				return true;
