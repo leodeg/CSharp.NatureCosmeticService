@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Nature.Data;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,29 @@ namespace Nature.Models
 
 	public class ServicesRepository : IRepository<Service>
 	{
-		private readonly ApplicationDbContext context;
+		private readonly ApplicationDbContext _context;
+		private readonly IWebHostEnvironment _environment;
 
-		public ServicesRepository(ApplicationDbContext context)
+		public ServicesRepository(ApplicationDbContext context, IWebHostEnvironment environment)
 		{
-			this.context = context;
+			this._context = context;
+			_environment = environment;
 		}
 
 		public IEnumerable<Service> Get()
 		{
-			return context.Services.Include(item => item.ServiceCategory);
+			return _context.Services.Include(item => item.ServiceCategory);
 		}
 
 		public Service Get(int id)
 		{
-			return context.Services.Include(item => item.ServiceCategory).FirstOrDefault(item => item.Id == id);
+			return _context.Services.Include(item => item.ServiceCategory).FirstOrDefault(item => item.Id == id);
 		}
 
 		public void Create(Service item)
 		{
-			context.Services.Add(item);
-			context.SaveChanges();
+			_context.Services.Add(item);
+			_context.SaveChanges();
 		}
 
 		public void Update(Service item)
@@ -38,32 +41,46 @@ namespace Nature.Models
 			if (item == null)
 				throw new ArgumentNullException();
 
-			var oldItem = context.Services.Include(item => item.ServiceCategory).SingleOrDefault(i => i.Id == item.Id);
+			var oldItem = _context.Services.Include(item => item.ServiceCategory).SingleOrDefault(i => i.Id == item.Id);
 
 			if (oldItem == null)
 				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);
 
 			oldItem.Title = item.Title;
-
 			oldItem.Price = item.Price;
 			oldItem.Description = item.Description;
 
 			if (!string.IsNullOrWhiteSpace(item.ImagePath))
+			{
+				bool isEmpty = string.IsNullOrWhiteSpace(oldItem.ImagePath);
+				bool isTheSameImage = string.Compare(oldItem.ImagePath, item.ImagePath) == 0;
+				if (!isEmpty && !isTheSameImage)
+				{
+					ServerFiles.DeleteImageFromLocalFiles(_environment.WebRootPath, oldItem.ImagePath, "services");
+				}
+
 				oldItem.ImagePath = item.ImagePath;
+			}
 
-			oldItem.ServiceCategoryId = item.ServiceCategoryId;
-			oldItem.ServiceCategory = item.ServiceCategory;
+			if (item.ServiceCategoryId != 0)
+				oldItem.ServiceCategoryId = item.ServiceCategoryId;
 
-			context.SaveChanges();
+			_context.Services.Update(oldItem);
+			_context.SaveChanges();
 		}
 
 		public bool Delete(int id)
 		{
-			var item = context.Services.SingleOrDefault(item => item.Id == id);
+			var item = _context.Services.SingleOrDefault(item => item.Id == id);
 			if (item != null)
 			{
-				context.Services.Remove(item);
-				context.SaveChanges();
+				if (!string.IsNullOrEmpty(item.ImagePath))
+				{
+					ServerFiles.DeleteImageFromLocalFiles(_environment.WebRootPath, item.ImagePath, "services");
+				}
+
+				_context.Services.Remove(item);
+				_context.SaveChanges();
 				return true;
 			}
 			return false;
@@ -76,7 +93,7 @@ namespace Nature.Models
 			{
 				if (disposing)
 				{
-					context.Dispose();
+					_context.Dispose();
 				}
 			}
 			this.disposed = true;

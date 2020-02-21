@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,24 @@ namespace Nature.Models
 			}
 
 			return filePath;
+		}
+
+		public static bool DeleteImageFromLocalFiles(string webRootPath, string imagePath, string folderName = "")
+		{
+			try
+			{
+				string fileName = imagePath.Split("\\")[4];
+				string filePath = Path.Combine(webRootPath, "img", folderName, fileName);
+				File.Delete(filePath);
+				return true;
+			}
+			catch (DirectoryNotFoundException ex)
+			{
+				Trace.WriteLine(ex.Message);
+				throw;
+			}
+
+			return false;
 		}
 	}
 }

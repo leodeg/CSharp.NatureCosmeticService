@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Razor.Language;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using Nature.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +14,12 @@ namespace Nature.Models
 	public class DoctorsRepository : IRepository<Doctor>
 	{
 		private readonly ApplicationDbContext context;
+		private readonly IWebHostEnvironment _environment;
 
-		public DoctorsRepository(ApplicationDbContext context)
+		public DoctorsRepository(ApplicationDbContext context, IWebHostEnvironment environment)
 		{
 			this.context = context;
+			_environment = environment;
 		}
 
 		public IEnumerable<Doctor> Get()
@@ -52,7 +57,15 @@ namespace Nature.Models
 			oldItem.Description = item.Description;
 
 			if (!string.IsNullOrWhiteSpace(item.ImagePath))
+			{
+				if (!string.IsNullOrWhiteSpace(oldItem.ImagePath) &&
+					!(string.Compare(oldItem.ImagePath, item.ImagePath) == 0))
+				{
+					ServerFiles.DeleteImageFromLocalFiles(_environment.WebRootPath, oldItem.ImagePath, "doctors");
+				}
+
 				oldItem.ImagePath = item.ImagePath;
+			}
 
 			if (item.DoctorCategoryId != 0)
 				oldItem.DoctorCategoryId = item.DoctorCategoryId;
@@ -83,6 +96,11 @@ namespace Nature.Models
 				var contacts = context.Contacts.SingleOrDefault(i => i.Id == item.ContactsId);
 				if (contacts != null)
 					context.Contacts.Remove(contacts);
+
+				if (!string.IsNullOrEmpty(item.ImagePath))
+				{
+					ServerFiles.DeleteImageFromLocalFiles(_environment.WebRootPath, item.ImagePath, "doctors");
+				}
 
 				context.Doctors.Remove(item);
 				context.SaveChanges();
