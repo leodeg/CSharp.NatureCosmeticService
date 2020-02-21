@@ -70,7 +70,7 @@ namespace Nature.Controllers
 
 			if (file != null && !string.IsNullOrWhiteSpace(file.FileName))
 			{
-				model.Doctor.ImagePath = await ServerFiles.SaveImageToLocalFiles(_environment, file, "doctors");
+				model.Doctor.ImagePath = await ServerFiles.SaveImageToLocalFiles(_environment, file, ServerFiles.doctors);
 			}
 
 			if (model.Doctor.Id == 0)

@@ -1,17 +1,16 @@
 ﻿@model Doctor
 
-
-<div class="col-sm-4 col-md-3 col-lg-4 col-12 mb-2">
-	<div class="img-thumbnail">
+<div class="col-md-4 mb-5">
+	<div class="card h-100">
 		<img class="img-fluid w-100" src="@Model.ImagePath" alt="@Model.FirstName Thumbnail" />
-		<div class="figure-caption">
-			<div class="text-center">
-				<h4><a asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.Id">@Model.FirstName @Model.LastName</a></h4>
-				<h4>@Model.Contacts.Email</h4>
-				<h4>@Model.Contacts.Phone</h4>
-				<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
-				<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-			</div>
+		<div class="card-body">
+			<h4><a asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.Id">@Model.FirstName @Model.LastName</a></h4>
+			<h4>@Model.Contacts.Email</h4>
+			<h4>@Model.Contacts.Phone</h4>
+		</div>
+		<div class="card-footer">
+			<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
+			<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 		</div>
 	</div>
 </div>

@@ -58,8 +58,9 @@ namespace Nature.Models
 
 			if (!string.IsNullOrWhiteSpace(item.ImagePath))
 			{
-				if (!string.IsNullOrWhiteSpace(oldItem.ImagePath) &&
-					!(string.Compare(oldItem.ImagePath, item.ImagePath) == 0))
+				bool isEmpty = string.IsNullOrWhiteSpace(oldItem.ImagePath);
+				bool isTheSameImage = string.Compare(oldItem.ImagePath, item.ImagePath) == 0;
+				if (!isEmpty && !isTheSameImage)
 				{
 					ServerFiles.DeleteImageFromLocalFiles(_environment.WebRootPath, oldItem.ImagePath, "doctors");
 				}

@@ -1,0 +1,19 @@
+﻿@model News
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<div class="card col-md-12 col-12" >
+	<img class="card-img-top mt-3" src="../@Model.ImagePath" alt="Card image cap">
+	<div class="card-body">
+		<h2 class="card-title">@Model.Title</h2>
+		<p class="card-text">@Model.Description</p>
+		<a class="btn btn-dark" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+		<a class="btn btn-dark" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
+	</div>
+	<div class="card-footer text-muted mb-3">
+		Posted on @Model.UploadDate.ToLongDateString() <br />
+		Last Edited on @Model.EditDate.ToLongDateString()
+	</div>
+</div>

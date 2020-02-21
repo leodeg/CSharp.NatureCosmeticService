@@ -74,11 +74,10 @@ body {
 -------------------------------------------------- */
 
 .custom-image {
+    min-height: 100px;
+    min-width: 100px;
     height: auto;
-    width: auto;
-    max-width: 300px;
-    max-height: 300px;
-    margin: auto;
+    width: 280px;
 }
 
 .nature-img-preview {
