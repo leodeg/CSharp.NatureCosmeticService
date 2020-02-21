@@ -9,26 +9,25 @@
 	<a class="btn btn-dark" name="Index" asp-controller="Services" asp-action="New">New Service</a>
 </p>
 
-@if (!@Model.Any())
-{
-	<h3>No services for now.</h3>
-}
-else
-{
-	<div class="row">
-		@foreach (var service in Model)
-		{
-			<div class="col-sm-4 col-md-4 col-lg-4 col-12 mb-3">
-				<img class="img-fluid w-100" src="@service.ImagePath" alt="@service.Title Thumbnail" />
-				<div class="figure-caption">
-					<div class="border border-top-0 p-2 text-center">
-						<h4><a asp-controller="Services" asp-action="Details" asp-route-id="@service.Id">@service.Title</a></h4>
-						<h4>@service.Price.ToString("c")</h4>
-						<a class="btn btn-dark" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@service.Id">Delete</a>
-						<a class="btn btn-dark" name="Delete" asp-controller="Services" asp-action="Edit" asp-route-id="@service.Id">Edit</a>
-					</div>
-				</div>
-			</div>
-		}
+<div class="row">
+	<div class="col-sm-10 col-md-10 col-lg-10">
+		<div class="row">
+			@if (!@Model.Any())
+			{
+				<h3>No services for now.</h3>
+			}
+			else
+			{
+
+				@foreach (var service in Model)
+				{
+					<partial name="ServicePreviewPartial" model="@service" />
+				}
+			}
+		</div>
+
 	</div>
-}
+	<div class="col-sm-2 col-md-2 col-lg-2">
+		@await Component.InvokeAsync("ServiceVercticalMenu")
+	</div>
+</div>

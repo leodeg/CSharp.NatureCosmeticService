@@ -80,3 +80,12 @@ body {
     max-height: 300px;
     margin: auto;
 }
+
+.nature-img-preview {
+    min-height: 100px;
+    min-width: 100px;
+    height: 300px;
+    width: 300px;
+    max-width: 300px;
+    max-height: 300px;
+}

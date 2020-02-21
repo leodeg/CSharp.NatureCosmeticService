@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Nature.Data;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,11 @@ namespace Nature.Models
 		public ServiceCategory Get(int id)
 		{
 			return context.ServiceCategories.FirstOrDefault(item => item.Id == id);
+		}
+
+		public ServiceCategory Get(string title)
+		{
+			return context.ServiceCategories.FirstOrDefault(c => c.Title == title);
 		}
 
 		public void Create(ServiceCategory item)

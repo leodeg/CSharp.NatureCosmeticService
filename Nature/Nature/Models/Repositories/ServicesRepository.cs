@@ -51,8 +51,8 @@ namespace Nature.Models
 			if (!string.IsNullOrWhiteSpace(item.ImagePath))
 				oldItem.ImagePath = item.ImagePath;
 
-			oldItem.ServiceCategoryId = oldItem.ServiceCategoryId;
-			oldItem.ServiceCategory = oldItem.ServiceCategory;
+			oldItem.ServiceCategoryId = item.ServiceCategoryId;
+			oldItem.ServiceCategory = item.ServiceCategory;
 
 			context.SaveChanges();
 		}

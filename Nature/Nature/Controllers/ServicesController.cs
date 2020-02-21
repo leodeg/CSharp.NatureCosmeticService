@@ -15,18 +15,34 @@ namespace Nature.Controllers
 	{
 		private readonly IRepository<Service> _repository;
 		private readonly IRepository<ServiceCategory> _categories;
-		private readonly IHostingEnvironment _environment;
+		private readonly IWebHostEnvironment _environment;
 
-		public ServicesController(IRepository<Service> repository, IRepository<ServiceCategory> categories, IHostingEnvironment environment)
+		public ServicesController(IRepository<Service> repository, IRepository<ServiceCategory> categories, IWebHostEnvironment environment)
 		{
 			_repository = repository;
 			_categories = categories;
 			_environment = environment;
 		}
 
-		public IActionResult Index()
+		public IActionResult Index(string categoryName = "")
 		{
-			var services = _repository.Get();
+			IEnumerable<Service> services;
+			string currentCategory = string.Empty;
+
+			if (string.IsNullOrEmpty(categoryName))
+			{
+				services = _repository.Get().OrderBy(p => p.Id);
+				currentCategory = "All Categories";
+			}
+			else
+			{
+				services = _repository.Get()
+					.Where(p => p.ServiceCategory.Title == categoryName)
+					.OrderBy(p => p.Id);
+
+				currentCategory = ((ServiceCategoriesRepository)_categories).Get(categoryName).Title;
+			}
+
 			return View(services);
 		}
 
@@ -51,9 +67,9 @@ namespace Nature.Controllers
 				return View("ServicesForm", model);
 			}
 
-			if (file != null && file.Length > 0 && !string.IsNullOrWhiteSpace(file.FileName))
+			if (file != null && !string.IsNullOrWhiteSpace(file.FileName))
 			{
-				SaveImageToLocalFiles(model.Service, file);
+				model.Service.ImagePath = await ServerFiles.SaveImageToLocalFiles(_environment, file, "services");
 			}
 
 			if (model.Service.Id == 0)
@@ -63,27 +79,7 @@ namespace Nature.Controllers
 			return RedirectToAction("Index", "Services");
 		}
 
-		private void SaveImageToLocalFiles(Service service, IFormFile file)
-		{
-			var imagePath = @"\img\services\";
-			var uploadPath = _environment.WebRootPath + imagePath;
-			if (Directory.Exists(uploadPath))
-				Directory.CreateDirectory(uploadPath);
 
-			var uniqFileName = Guid.NewGuid().ToString();
-			var fileName = Path.GetFileName(uniqFileName + "." + file.FileName.Split(".")[1].ToLower());
-			string fullPath = uploadPath + fileName;
-
-			imagePath += @"\";
-			var filePath = @".." + Path.Combine(imagePath, fileName);
-
-			using (var fileStream = new FileStream(fullPath, FileMode.Create))
-			{
-				file.CopyTo(fileStream);
-			}
-
-			service.ImagePath = filePath;
-		}
 
 		public ActionResult Edit(int id)
 		{

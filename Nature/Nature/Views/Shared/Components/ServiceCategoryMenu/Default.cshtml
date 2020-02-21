@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ServiceCategory>
+
+<li class="dropdown nav-item">
+	<a asp-controller="Services" asp-action="Index" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">
+		Services <b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu">
+		<li>
+			<a asp-controller="Services"
+			   asp-action="Index"
+			   asp-route-categoryName=""
+			   class="nav-link text-dark pl-3">
+				View all services
+			</a>
+		</li>
+		<li class="dropdown-divider"></li>
+
+		@foreach (var category in Model)
+		{
+			<li>
+				<a asp-controller="Services" asp-action="Index"
+				   asp-route-categoryName="@category.Title"
+				   class="nav-link text-dark pl-3">
+					@category.Title
+				</a>
+			</li>
+		}
+	</ul>
+</li>
+

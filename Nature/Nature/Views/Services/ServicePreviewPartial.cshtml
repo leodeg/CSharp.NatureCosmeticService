@@ -1,0 +1,16 @@
+﻿@model Service
+
+
+<div class="col-sm-4 col-md-3 col-lg-4 col-12 mb-2">
+	<div class="img-thumbnail">
+		<img class="img-fluid w-100" src="@Model.ImagePath" alt="@Model.Title Thumbnail" />
+		<div class="figure-caption">
+			<div class="text-center">
+				<h4><a asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a></h4>
+				<h4>@Model.Price.ToString("c")</h4>
+				<a class="btn btn-dark" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
+				<a class="btn btn-dark" name="Delete" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+			</div>
+		</div>
+	</div>
+</div>

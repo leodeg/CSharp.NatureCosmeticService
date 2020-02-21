@@ -13,55 +13,91 @@ else
 	<h2>Edit: @Model.Service.Title</h2>
 }
 
-<form asp-controller="Services" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
-	<div asp-validation-summary="All" class="text-danger"></div>
+<div class="row">
+	<div class="col-md-9">
+		<form asp-controller="Services" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
+			<div asp-validation-summary="All" class="text-danger"></div>
 
-	<input asp-for="@Model.Service.Id" type="hidden" />
+			<input asp-for="@Model.Service.Id" type="hidden" />
 
-	<div class="form-group">
-		<label asp-for="@Model.Service.Title" class="col-md-2 col-form-label"></label>
-		<div class="col-md-5">
-			<input asp-for="@Model.Service.Title" class="form-control" />
-			<span asp-validation-for="@Model.Service.Title" class="text-danger"></span>
-		</div>
+			<div class="form-group">
+				<label asp-for="@Model.Service.Title" class="col-md-2 col-form-label"></label>
+				<div class="col-md-5">
+					<input asp-for="@Model.Service.Title" class="form-control" />
+					<span asp-validation-for="@Model.Service.Title" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Service.Price" class="col-md-2 col-form-label"></label>
+				<div class="col-md-5">
+					<input asp-for="@Model.Service.Price" class="form-control" />
+					<span asp-validation-for="@Model.Service.Price" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Service.ServiceCategoryId" class="col-md-2 col-form-label"></label>
+				<div class="col-md-5">
+					<select class="form-control" asp-for="@Model.Service.ServiceCategoryId" asp-items="@(new SelectList(Model.ServiceCategories, "Id", "Title"))">
+						<option>Please select category</option>
+					</select>
+					<span asp-validation-for="@Model.Service.ServiceCategoryId" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Service.Description" class="col-md-2 col-form-label"></label>
+				<div class="col-md-5">
+					<textarea asp-for="@Model.Service.Description" rows="5" class="form-control"></textarea>
+					<span asp-validation-for="@Model.Service.Description" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Service.ImagePath" class="col-md-2 col-form-label"></label>
+				<div class="col-md-5">
+					<div class="input-group my-3">
+						<input type="file" name="file" class="form-control-file" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-5">
+					<input type="submit" class="btn btn-dark" value="Save" />
+				</div>
+			</div>
+		</form>
 	</div>
-
-	<div class="form-group">
-		<label asp-for="@Model.Service.Price" class="col-md-2 col-form-label"></label>
-		<div class="col-md-5">
-			<input asp-for="@Model.Service.Price" class="form-control" />
-			<span asp-validation-for="@Model.Service.Price" class="text-danger"></span>
-		</div>
+	<div class="col-md-3">
+		<h4>Image Preview</h4>
+		@if (string.IsNullOrEmpty(Model.Service.ImagePath))
+		{
+			<img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
+		}
+		else
+		{
+			<img src="../@Model.Service.ImagePath" id="preview" class="img-thumbnail">
+		}
 	</div>
+</div>
 
-	<div class="form-group">
-		<label asp-for="@Model.Service.ServiceCategoryId" class="col-md-2 col-form-label"></label>
-		<div class="col-md-5">
-			<select class="form-control" asp-for="@Model.Service.ServiceCategoryId" asp-items="@(new SelectList(Model.ServiceCategories, "Id", "Title"))">
-				<option>Please select category</option>
-			</select>
-			<span asp-validation-for="@Model.Service.ServiceCategoryId" class="text-danger"></span>
-		</div>
-	</div>
+@section scripts
+{
+	<script>
+		$('input[type="file"]').change(function (e) {
+			var fileName = e.target.files[0].name;
+			$("#file").val(fileName);
 
-	<div class="form-group">
-		<label asp-for="@Model.Service.Description" class="col-md-2 col-form-label"></label>
-		<div class="col-md-5">
-			<textarea asp-for="@Model.Service.Description" rows="5" class="form-control"></textarea>
-			<span asp-validation-for="@Model.Service.Description" class="text-danger"></span>
-		</div>
-	</div>
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				// get loaded data and render thumbnail.
+				document.getElementById("preview").src = e.target.result;
+			};
+			// read the image file as a data URL.
+			reader.readAsDataURL(this.files[0]);
+		});
+	</script>
+}
 
-	<div class="form-group">
-		<label asp-for="@Model.Service.ImagePath" class="col-md-2 col-form-label"></label>
-		<div class="col-md-5">
-			<input type="file" name="file" class="form-control-file" />
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="col-md-5">
-			<input type="submit" class="btn btn-dark" value="Save" />
-		</div>
-	</div>
-</form>
