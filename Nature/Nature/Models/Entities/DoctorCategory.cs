@@ -15,6 +15,7 @@ namespace Nature.Models
 
 		[Required]
 		[MaxLength(255)]
+		[Display(Name = "Название")]
 		public string Title { get; set; }
 	}
 }

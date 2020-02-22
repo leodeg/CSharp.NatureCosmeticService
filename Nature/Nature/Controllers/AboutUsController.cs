@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nature.Models;
 
@@ -22,6 +23,7 @@ namespace Nature.Controllers
 			return View(aboutUs);
 		}
 
+		[Authorize(Roles = Roles.Editor)]
 		[HttpPost]
 		public async Task<ActionResult> Save(AboutUs model)
 		{
@@ -33,6 +35,7 @@ namespace Nature.Controllers
 		}
 
 
+		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Edit(int id)
 		{
 			var aboutUs = _repository.Get().FirstOrDefault();

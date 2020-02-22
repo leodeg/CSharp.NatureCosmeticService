@@ -15,25 +15,31 @@ namespace Nature.Models
 
 		[Required]
 		[MaxLength(255)]
+		[Display(Name = "Название")]
 		public string Title { get; set; }
 
 		[DataType(DataType.MultilineText)]
+		[Display(Name = "Описание")]
 		public string Description { get; set; }
 
+		[Display(Name = "Изображение")]
 		public string ImagePath { get; set; }
 
 		[DataType(DataType.Date)]
+		[Display(Name = "Время добавления")]
 		public DateTime UploadDate { get; set; }
 
 		[DataType(DataType.DateTime)]
+		[Display(Name = "Время редактирования")]
 		public DateTime EditDate { get; set; }
 
 		public string ShortDescription
 		{
 			get
 			{
-				if (Description.Length > 200)
-					return Description.Substring(0, 200) + "...";
+				if (!string.IsNullOrEmpty(Description))
+					if (Description.Length > 200)
+						return Description.Substring(0, 200) + "...";
 				return Description;
 			}
 		}

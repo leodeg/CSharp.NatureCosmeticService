@@ -19,12 +19,14 @@ namespace Nature.Models
 
 		[Required]
 		[MaxLength(255)]
+		[Display(Name = "Название")]
 		public string Title { get; set; }
 
 		[Required]
 		[DataType(DataType.MultilineText)]
+		[Display(Name = "Описание")]
 		public string Description { get; set; }
 
-		
+
 	}
 }

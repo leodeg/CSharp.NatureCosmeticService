@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,7 @@ namespace Nature.Controllers
 			return View(doctors);
 		}
 
+		[Authorize(Roles = Roles.Editor)]
 		public ActionResult New()
 		{
 			var doctor = new Doctor();
@@ -60,6 +62,7 @@ namespace Nature.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = Roles.Editor)]
 		public async Task<ActionResult> Save(DoctorsViewModel model, IFormFile file)
 		{
 			if (!ModelState.IsValid)
@@ -82,6 +85,7 @@ namespace Nature.Controllers
 
 
 
+		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Edit(int id)
 		{
 			var doctor = _repository.Get(id);
@@ -97,6 +101,7 @@ namespace Nature.Controllers
 			return View("DoctorsForm", model);
 		}
 
+		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Details(int id)
 		{
 			var doctor = _repository.Get(id);
@@ -106,6 +111,7 @@ namespace Nature.Controllers
 			return View("Details", doctor);
 		}
 
+		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Remove(int id)
 		{
 			if (!_repository.Delete(id))

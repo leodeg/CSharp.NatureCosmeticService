@@ -15,21 +15,26 @@ namespace Nature.Models
 
 		[Required]
 		[MaxLength(50)]
+		[Display(Name = "Имя")]
 		public string FirstName { get; set; }
 
 		[Required]
 		[MaxLength(50)]
+		[Display(Name = "Фамилия")]
 		public string LastName { get; set; }
 
 		[DataType(DataType.PhoneNumber)]
+		[Display(Name = "Номер телефона")]
 		public string Phone { get; set; }
 
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 
 		[DataType(DataType.MultilineText)]
+		[Display(Name = "Описание")]
 		public string Description { get; set; }
 
+		[Display(Name = "Прочитано?")]
 		public bool HasBeenRead { get; set; }
 
 		[NotMapped]
