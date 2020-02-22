@@ -31,7 +31,7 @@ else
             <div class="form-group">
                 <label asp-for="@Model.Description" class="col-md-2 col-form-label"></label>
                 <div class="col-md-5">
-                    <textarea asp-for="@Model.Description" rows="5" class="form-control"></textarea>
+                    <textarea asp-for="@Model.Description" rows="5" id="text-editor" class="form-control"></textarea>
                     <span asp-validation-for="@Model.Description" class="text-danger"></span>
                 </div>
             </div>
@@ -69,19 +69,25 @@ else
 
 @section scripts
 {
-    <script>
-		$('input[type="file"]').change(function (e) {
-			var fileName = e.target.files[0].name;
-			$("#file").val(fileName);
+    <link rel="stylesheet" href="~/lib/trumbowyg/ui/trumbowyg.min.css">
+    <script src="~/lib/trumbowyg/trumbowyg.min.js"></script>
 
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				// get loaded data and render thumbnail.
-				document.getElementById("preview").src = e.target.result;
-			};
-			// read the image file as a data URL.
-			reader.readAsDataURL(this.files[0]);
-		});
+    <script>
+        $('input[type="file"]').change(function (e) {
+            var fileName = e.target.files[0].name;
+            $("#file").val(fileName);
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("preview").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        $('#text-editor').trumbowyg();
     </script>
+
 }
 

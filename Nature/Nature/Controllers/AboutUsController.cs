@@ -25,7 +25,7 @@ namespace Nature.Controllers
 
 		[Authorize(Roles = Roles.Editor)]
 		[HttpPost]
-		public async Task<ActionResult> Save(AboutUs model)
+		public ActionResult Save(AboutUs model)
 		{
 			if (!ModelState.IsValid)
 				return View("AboutUsForm", model);

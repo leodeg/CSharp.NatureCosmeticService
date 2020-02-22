@@ -27,7 +27,7 @@ namespace Nature.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Index(int page = 1, string title = "")
+		public IActionResult Index(int page = 1, string title = "")
 		{
 			IEnumerable<News> news = GetNewsFromRepository(title);
 			NewsIndexViewModel viewModel = CreateNewsViewModelPagination(page, news);
@@ -42,7 +42,7 @@ namespace Nature.Controllers
 			return _repository.Get().OrderByDescending(p => p.UploadDate);
 		}
 
-		private static NewsIndexViewModel CreateNewsViewModelPagination(int currentPage, IEnumerable<News> news)
+		private NewsIndexViewModel CreateNewsViewModelPagination(int currentPage, IEnumerable<News> news)
 		{
 			var count = news.Count();
 			var newsOnTheCurrentPage = news.Skip((currentPage - 1) * NewsOnPage).Take(NewsOnPage);

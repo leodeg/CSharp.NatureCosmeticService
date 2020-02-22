@@ -63,7 +63,7 @@
 			<div class="form-group">
 				<label asp-for="@Model.Description" class="col-md-2 col-form-label"></label>
 				<div class="col-md-5">
-					<textarea asp-for="@Model.Description" rows="5" class="form-control"></textarea>
+					<textarea asp-for="@Model.Description" id="text-editor" rows="5" class="form-control"></textarea>
 					<span asp-validation-for="@Model.Description" class="text-danger"></span>
 				</div>
 			</div>
@@ -76,3 +76,13 @@
 		</form>
 	</div>
 </div>
+
+@section scripts
+{
+	<link rel="stylesheet" href="~/lib/trumbowyg/ui/trumbowyg.min.css">
+	<script src="~/lib/trumbowyg/trumbowyg.min.js"></script>
+
+	<script>
+		$('#text-editor').trumbowyg();
+	</script>
+}

@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-7 col-lg-9">
-		<p>@Model.Description</p>
+		<p>@Html.Raw(@Model.Description)</p>
 		<p class="btn float-right">
 			<a class="btn btn-dark" name="Edit" asp-controller="Doctors" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 			<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
