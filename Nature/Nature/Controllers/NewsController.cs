@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Nature.Models;
 using Nature.Models.ViewModels;
 
@@ -17,6 +18,8 @@ namespace Nature.Controllers
 		private readonly IRepository<News> _repository;
 		private readonly IWebHostEnvironment _environment;
 
+		private const int NewsOnPage = 5;
+
 		public NewsController(IRepository<News> repository, IWebHostEnvironment environment)
 		{
 			_repository = repository;
@@ -24,16 +27,32 @@ namespace Nature.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index(string title = "")
+		public async Task<IActionResult> Index(int page = 1, string title = "")
 		{
-			IEnumerable<News> news;
+			IEnumerable<News> news = GetNewsFromRepository(title);
+			NewsIndexViewModel viewModel = CreateNewsViewModelPagination(page, news);
+			return View(viewModel);
+		}
 
-			string currentCategory = string.Empty;
-			if (string.IsNullOrEmpty(title))
-				news = _repository.Get().OrderByDescending(p => p.UploadDate);
-			else news = ((NewsRepository)_repository).Get(title).OrderByDescending(p => p.UploadDate);
+		private IEnumerable<News> GetNewsFromRepository(string title)
+		{
+			if (!string.IsNullOrEmpty(title))
+				return ((NewsRepository)_repository).Get(title).OrderByDescending(p => p.UploadDate);
 
-			return View(news);
+			return _repository.Get().OrderByDescending(p => p.UploadDate);
+		}
+
+		private static NewsIndexViewModel CreateNewsViewModelPagination(int currentPage, IEnumerable<News> news)
+		{
+			var count = news.Count();
+			var newsOnTheCurrentPage = news.Skip((currentPage - 1) * NewsOnPage).Take(NewsOnPage);
+
+			PageViewModel pageViewModel = new PageViewModel(count, currentPage, NewsOnPage);
+			return new NewsIndexViewModel
+			{
+				PageViewModel = pageViewModel,
+				News = newsOnTheCurrentPage
+			};
 		}
 
 		[Authorize(Roles = Roles.Editor)]

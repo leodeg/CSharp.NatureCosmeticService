@@ -1,4 +1,4 @@
-﻿@model IEnumerable<News>
+﻿@model NewsIndexViewModel
 
 @{
 	ViewData["Title"] = "Index";
@@ -17,9 +17,9 @@
 			</h1>
 
 			<!-- Blog Post -->
-			@if (Model.Any())
+			@if (Model.News.Any())
 			{
-				@foreach (var news in Model)
+				@foreach (var news in Model.News)
 				{
 					<partial name="NewsPostPartial" model="@news" />
 				}
@@ -31,12 +31,18 @@
 
 			<!-- Pagination -->
 			<ul class="pagination justify-content-center mb-4">
-				<li class="page-item">
-					<a class="page-link" href="#">&larr; Older</a>
-				</li>
-				<li class="page-item disabled">
-					<a class="page-link" href="#">Newer &rarr;</a>
-				</li>
+				@if (Model.PageViewModel.HasPreviousPage)
+				{
+					<li class="page-item">
+						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Newer</a>
+					</li>
+				}
+				@if (Model.PageViewModel.HasNextPage)
+				{
+					<li class="page-item">
+						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Older &rarr;</a>
+					</li>
+				}
 			</ul>
 
 		</div>
