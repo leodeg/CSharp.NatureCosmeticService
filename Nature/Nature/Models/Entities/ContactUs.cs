@@ -31,5 +31,14 @@ namespace Nature.Models
 		public string Description { get; set; }
 
 		public bool HasBeenRead { get; set; }
+
+		[NotMapped]
+		public string GetReadState
+		{
+			get
+			{
+				return HasBeenRead ? "Mark Unread" : "Mark Read";
+			}
+		}
 	}
 }

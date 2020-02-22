@@ -19,35 +19,56 @@ namespace Nature.Models
 
 		public IEnumerable<AboutUs> Get()
 		{
-			return context.AboutUs;
+			return context.AboutUs.Include(c => c.Contacts);
 		}
 
 		public AboutUs Get(int id)
 		{
-			return context.AboutUs.FirstOrDefault(item => item.Id == id);
+			return context.AboutUs.Include(c => c.Contacts).FirstOrDefault(item => item.Id == id);
 		}
 
 		public void Create(AboutUs item)
 		{
+			if (item.Contacts != null)
+				context.Contacts.Add(item.Contacts);
+
 			context.AboutUs.Add(item);
 			context.SaveChanges();
 		}
 
-		public void Update(AboutUs item)
+		public void Update(AboutUs newItem)
 		{
-			if (item == null)
+			if (newItem == null)
 				throw new ArgumentNullException();
 
-			var oldItem = context.AboutUs.SingleOrDefault(item => item.Id == item.Id);
+			var oldItem = context.AboutUs.Include(c => c.Contacts).SingleOrDefault(i => i.Id == newItem.Id);
 
 			if (oldItem == null)
-				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);
+				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + newItem.Id);
 
-			oldItem.Id = item.Id;
-			oldItem.Title = item.Title;
-			oldItem.Description = item.Description;
+			oldItem.Id = newItem.Id;
+			oldItem.Title = newItem.Title;
+			oldItem.Description = newItem.Description;
 
+			UpdateContacts(newItem, oldItem);
 			context.SaveChanges();
+		}
+
+		private void UpdateContacts(AboutUs newItem, AboutUs oldItem)
+		{
+			if (newItem.ContactsId > 0 && oldItem.Contacts == null)
+			{
+				context.Contacts.Add(newItem.Contacts);
+				oldItem.ContactsId = newItem.ContactsId;
+			}
+			else if (oldItem.Contacts != null)
+			{
+				oldItem.Contacts.Email = newItem.Contacts.Email;
+				oldItem.Contacts.Phone = newItem.Contacts.Phone;
+				oldItem.Contacts.City = newItem.Contacts.City;
+				oldItem.Contacts.Address = newItem.Contacts.Address;
+				oldItem.Contacts.Country = newItem.Contacts.Country;
+			}
 		}
 
 		public bool Delete(int id)
@@ -55,6 +76,10 @@ namespace Nature.Models
 			var item = context.AboutUs.SingleOrDefault(item => item.Id == id);
 			if (item != null)
 			{
+				var contacts = context.Contacts.SingleOrDefault(i => i.Id == item.ContactsId);
+				if (contacts != null)
+					context.Contacts.Remove(contacts);
+
 				context.AboutUs.Remove(item);
 				context.SaveChanges();
 				return true;

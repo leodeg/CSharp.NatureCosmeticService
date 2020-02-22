@@ -222,6 +222,9 @@ namespace Nature.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ContactsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -231,6 +234,8 @@ namespace Nature.Data.Migrations
                         .HasMaxLength(255);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContactsId");
 
                     b.ToTable("AboutUs");
                 });
@@ -479,6 +484,15 @@ namespace Nature.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Nature.Models.AboutUs", b =>
+                {
+                    b.HasOne("Nature.Models.Contacts", "Contacts")
+                        .WithMany()
+                        .HasForeignKey("ContactsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

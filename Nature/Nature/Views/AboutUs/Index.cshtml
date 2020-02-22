@@ -1,0 +1,28 @@
+﻿@model AboutUs
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<div class="container">
+	<p>
+		<a class="btn btn-dark" name="Index" asp-controller="AboutUs" asp-action="Edit">Edit Information</a>
+	</p>
+</div>
+
+@if (Model != null)
+{
+	<div class="jumbotron">
+		<h1 class="display-3">@Model.Title</h1>
+		<hr class="my-4">
+		<p>
+			@Model.Description
+		</p>
+		<p class="lead">
+		<p>@Model.Contacts.Phone</p>
+		<p>@Model.Contacts.Email</p>
+		<p>@Model.Contacts.Address</p>
+		<a class="btn btn-primary" href="#!" role="button">Learn more</a>
+		</p>
+	</div>
+}

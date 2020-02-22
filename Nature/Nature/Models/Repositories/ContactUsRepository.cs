@@ -39,7 +39,7 @@ namespace Nature.Models
 			if (item == null)
 				throw new ArgumentNullException();
 
-			var oldItem = context.ContactUs.SingleOrDefault(item => item.Id == item.Id);
+			var oldItem = context.ContactUs.SingleOrDefault(i => i.Id == item.Id);
 
 			if (oldItem == null)
 				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);
@@ -51,6 +51,13 @@ namespace Nature.Models
 			oldItem.Description = item.Description;
 			oldItem.HasBeenRead = item.HasBeenRead;
 
+			context.SaveChanges();
+		}
+
+		public void SwitchIsContactWasReaded(int id)
+		{
+			var oldItem = context.ContactUs.SingleOrDefault(i => i.Id == id);
+			oldItem.HasBeenRead = !oldItem.HasBeenRead;
 			context.SaveChanges();
 		}
 

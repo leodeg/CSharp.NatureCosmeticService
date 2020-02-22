@@ -13,11 +13,18 @@ namespace Nature.Models
 		[Key]
 		public int Id { get; set; }
 
+		[ForeignKey("Contacts")]
+		public int ContactsId { get; set; }
+		public Contacts Contacts { get; set; }
+
 		[Required]
 		[MaxLength(255)]
 		public string Title { get; set; }
 
+		[Required]
 		[DataType(DataType.MultilineText)]
 		public string Description { get; set; }
+
+		
 	}
 }
