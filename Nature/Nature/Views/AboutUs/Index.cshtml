@@ -4,11 +4,17 @@
 	ViewData["Title"] = "Index";
 }
 
-<div class="container">
-	<p>
-		<a class="btn btn-dark" name="Index" asp-controller="AboutUs" asp-action="Edit">Edit Information</a>
-	</p>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="card my-4">
+		<h5 class="card-header">Управление</h5>
+		<div class="card-body">
+			<div class="input-group">
+				<a class="btn btn-primary" name="Edit" asp-controller="AboutUs" asp-action="Edit">Редактировать</a>
+			</div>
+		</div>
+	</div>
+}
 
 @if (Model != null)
 {

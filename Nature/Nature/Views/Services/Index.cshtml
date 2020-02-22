@@ -1,41 +1,57 @@
-﻿@model IEnumerable<Service>
+﻿@model ServicesIndexViewModel
 
 @{
 	ViewData["Title"] = "Index";
 }
 
-
-
 <div class="row">
 	<div class="col-sm-9 col-md-9 col-lg-9">
 		<div class="row">
-			@if (!@Model.Any())
+			@if (!@Model.Services.Any())
 			{
-				<h3>No services for now.</h3>
+				<h3>Пока что нет услуг такой категории.</h3>
 			}
 			else
 			{
 
-				@foreach (var service in Model)
+				@foreach (var service in Model.Services)
 				{
 					<partial name="ServicePreviewPartial" model="@service" />
 				}
 			}
 		</div>
 
+		<!-- Pagination -->
+		<ul class="pagination justify-content-center mb-4">
+			@if (Model.PageViewModel.HasPreviousPage)
+			{
+				<li class="page-item">
+					<a asp-controller="Services" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Назад</a>
+				</li>
+			}
+			@if (Model.PageViewModel.HasNextPage)
+			{
+				<li class="page-item">
+					<a asp-controller="Services" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Вперед &rarr;</a>
+				</li>
+			}
+		</ul>
+
 	</div>
 
 	<div class="col-sm-3 col-md-3 col-lg-3">
-		<div class="card my-4">
-
-			<h5 class="card-header">Manage</h5>
-			<div class="card-body">
-				<div class="input-group">
-					<a class="btn btn-dark m-2" name="Index" asp-controller="ServiceCategories" asp-action="Index">Manage Categories</a>
-					<a class="btn btn-dark m-2" name="Index" asp-controller="Services" asp-action="New">New Service</a>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<div class="card my-4">
+				<h5 class="card-header">Управление</h5>
+				<div class="card-body">
+					<div class="input-group">
+						<a class="btn btn-primary m-2" name="Index" asp-controller="ServiceCategories" asp-action="Index">Категории</a>
+						<a class="btn btn-primary m-2" name="New" asp-controller="Services" asp-action="New">Добавить услугу</a>
+					</div>
 				</div>
 			</div>
-		</div>
-		@await Component.InvokeAsync("ServiceVercticalMenu")
+		}
+		@await Component.InvokeAsync("ServiceVerticalMenu")
 	</div>
 </div>

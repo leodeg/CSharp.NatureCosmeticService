@@ -1,20 +1,20 @@
-﻿@model IEnumerable<ServiceCategory>
+﻿@model IEnumerable<DoctorCategory>
 
 
 <div class="card my-4">
-	<h5 class="card-header">Categories</h5>
+	<h5 class="card-header">Категории</h5>
 	<div class="card-body">
 		<div class="row">
 			<div class="col-lg-12">
 				<ul class="list-unstyled mb-0">
 					<li>
-						<a asp-controller="Services" asp-action="Index" asp-route-categoryName="" class="nav-link text-dark pl-3">View all services</a>
+						<a asp-controller="Doctors" asp-action="Index" asp-route-title="" class="nav-link text-dark pl-3">Все услуги</a>
 					</li>
 					<li class="dropdown-divider"></li>
 					@foreach (var category in Model)
 					{
 						<li>
-							<a asp-controller="Services" asp-action="Index" asp-route-categoryName="@category.Title" class="nav-link text-dark pl-3">
+							<a asp-controller="Doctors" asp-action="Index" asp-route-title="@category.Title" class="nav-link text-dark pl-3">
 								@category.Title
 							</a>
 						</li>

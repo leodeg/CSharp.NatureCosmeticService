@@ -7,9 +7,12 @@
 			<h4><a asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a></h4>
 			<h4>@Model.Price.ToString("c")</h4>
 		</div>
-		<div class="card-footer">
-			<a class="btn btn-dark" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
-			<a class="btn btn-dark" name="Delete" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-		</div>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<div class="card-footer">
+				<a class="btn btn-danger" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id">Удалить</a>
+				<a class="btn btn-dark" name="Edit" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+			</div>
+		}
 	</div>
 </div>

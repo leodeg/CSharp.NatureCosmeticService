@@ -19,6 +19,8 @@ namespace Nature.Controllers
 		private readonly IRepository<DoctorCategory> _categories;
 		private readonly IWebHostEnvironment _environment;
 
+		private const int NewsOnPage = 6;
+
 		public DoctorsController(IRepository<Doctor> repository, IRepository<DoctorCategory> categories, IWebHostEnvironment environment)
 		{
 			_repository = repository;
@@ -26,27 +28,42 @@ namespace Nature.Controllers
 			_environment = environment;
 		}
 
-		public IActionResult Index(string categoryName = "")
-		{
-			IEnumerable<Doctor> doctors;
-			string currentCategory = string.Empty;
 
-			if (string.IsNullOrEmpty(categoryName))
+		[HttpGet]
+		public IActionResult Index(int page = 1, string title = "")
+		{
+			IEnumerable<Doctor> doctors = GetDoctorsFromRepository(title);
+			DoctorsIndexViewModel viewModel = CreateDoctorsViewModelPagination(page, doctors);
+			return View(viewModel);
+		}
+
+		private IEnumerable<Doctor> GetDoctorsFromRepository(string title)
+		{
+			if (string.IsNullOrEmpty(title))
 			{
-				doctors = _repository.Get().OrderBy(p => p.Id);
-				currentCategory = "All Categories";
+				return _repository.Get().OrderBy(p => p.Id);
 			}
 			else
 			{
-				doctors = _repository.Get()
-					.Where(p => p.DoctorCategory.Title == categoryName)
+				return _repository.Get()
+					.Where(p => p.DoctorCategory.Title == title)
 					.OrderBy(p => p.Id);
-
-				currentCategory = ((DoctorCategoriesRepository)_categories).Get(categoryName).Title;
 			}
-
-			return View(doctors);
 		}
+
+		private DoctorsIndexViewModel CreateDoctorsViewModelPagination(int currentPage, IEnumerable<Doctor> doctors)
+		{
+			var count = doctors.Count();
+			var doctorsOnTheCurrentPage = doctors.Skip((currentPage - 1) * NewsOnPage).Take(NewsOnPage);
+
+			PageViewModel pageViewModel = new PageViewModel(count, currentPage, NewsOnPage);
+			return new DoctorsIndexViewModel
+			{
+				PageViewModel = pageViewModel,
+				Doctors = doctorsOnTheCurrentPage
+			};
+		}
+
 
 		[Authorize(Roles = Roles.Editor)]
 		public ActionResult New()
@@ -101,7 +118,6 @@ namespace Nature.Controllers
 			return View("DoctorsForm", model);
 		}
 
-		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Details(int id)
 		{
 			var doctor = _repository.Get(id);

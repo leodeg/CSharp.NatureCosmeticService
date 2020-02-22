@@ -5,7 +5,7 @@
 	<div class="card-body">
 		<h2 class="card-title">@Model.Title</h2>
 		<p class="card-text">@Html.Raw(@Model.ShortDescription)</p>
-		<a class="btn btn-dark" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Read More &rarr;</a>
+		<a class="btn btn-dark" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Читать</a>
 	</div>
 	<div class="card-footer text-muted">
 		Posted on @Model.UploadDate.ToLongDateString() <br />

@@ -25,8 +25,8 @@
 				<tr>
 					<th>@category.Title</th>
 					<th>
-						<a class="btn btn-dark" name="Edit" asp-controller="DoctorCategories" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
-						<a class="btn btn-dark" name="Details" asp-controller="DoctorCategories" asp-action="Remove" asp-route-id="@category.Id">Remove</a>
+						<a class="btn btn-dark" name="Edit" asp-controller="DoctorCategories" asp-action="Edit" asp-route-id="@category.Id">Редактировать</a>
+						<a class="btn btn-danger" name="Remove" asp-controller="DoctorCategories" asp-action="Remove" asp-route-id="@category.Id">Удалить</a>
 					</th>
 				</tr>
 			}

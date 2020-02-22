@@ -8,11 +8,11 @@ using Nature.Models;
 namespace Nature.Components
 {
 
-	public class ServiceVercticalMenu : ViewComponent
+	public class ServiceVerticalMenu : ViewComponent
 	{
 		private readonly IRepository<ServiceCategory> _categoryRepository;
 
-		public ServiceVercticalMenu(IRepository<ServiceCategory> categoryRepository)
+		public ServiceVerticalMenu(IRepository<ServiceCategory> categoryRepository)
 		{
 			_categoryRepository = categoryRepository;
 		}

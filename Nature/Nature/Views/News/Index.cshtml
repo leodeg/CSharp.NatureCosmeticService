@@ -34,13 +34,13 @@
 				@if (Model.PageViewModel.HasPreviousPage)
 				{
 					<li class="page-item">
-						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Newer</a>
+						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Вперед</a>
 					</li>
 				}
 				@if (Model.PageViewModel.HasNextPage)
 				{
 					<li class="page-item">
-						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Older &rarr;</a>
+						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Назад &rarr;</a>
 					</li>
 				}
 			</ul>
@@ -49,25 +49,26 @@
 
 		<!-- Sidebar Widgets Column -->
 		<div class="col-md-4">
-
-			<!-- Search Widget -->
-			<div class="card my-4">
-				<h5 class="card-header">Manage</h5>
-				<div class="card-body">
-					<div class="input-group">
-						<a class="btn btn-dark" name="Index" asp-controller="News" asp-action="New">New News</a>
+			@if (User.Identity.IsAuthenticated)
+			{
+				<!-- Manage Widget -->
+				<div class="card my-4">
+					<h5 class="card-header">Управление</h5>
+					<div class="card-body">
+						<div class="input-group">
+							<a class="btn btn-primary" name="Index" asp-controller="News" asp-action="New">Добавить Новость</a>
+						</div>
 					</div>
 				</div>
-			</div>
-
+			}
 			<!-- Search Widget -->
 			<div class="card my-4">
-				<h5 class="card-header">Search</h5>
+				<h5 class="card-header">Поиск</h5>
 				<div class="card-body">
 					<div class="input-group form-inline">
 						<form asp-controller="News" asp-action="Index" method="get" role="form" enctype="multipart/form-data">
-							<input type="text" class="form-control w-auto" id="title" name="title" placeholder="Search for...">
-							<input type="submit" class="btn btn-dark" value="Save" />
+							<input type="text" class="form-control w-auto" id="title" name="title" placeholder="Поиск по названию...">
+							<input type="submit" class="btn btn-dark" value="Искать" />
 						</form>
 					</div>
 				</div>

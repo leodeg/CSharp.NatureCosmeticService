@@ -18,6 +18,9 @@ namespace Nature.Controllers
 		private readonly IRepository<ServiceCategory> _categories;
 		private readonly IWebHostEnvironment _environment;
 
+		private const int NewsOnPage = 6;
+
+
 		public ServicesController(IRepository<Service> repository, IRepository<ServiceCategory> categories, IWebHostEnvironment environment)
 		{
 			_repository = repository;
@@ -25,26 +28,35 @@ namespace Nature.Controllers
 			_environment = environment;
 		}
 
-		public IActionResult Index(string categoryName = "")
+		[HttpGet]
+		public IActionResult Index(int page = 1, string title = "")
 		{
-			IEnumerable<Service> services;
-			string currentCategory = string.Empty;
+			IEnumerable<Service> services = GetServicesFromRepository(title);
+			ServicesIndexViewModel viewModel = CreateNewsViewModelPagination(page, services);
+			return View(viewModel);
+		}
 
-			if (string.IsNullOrEmpty(categoryName))
+		private IEnumerable<Service> GetServicesFromRepository(string title)
+		{
+			if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(title))
+				return _repository.Get().OrderBy(p => p.Id);
+
+			return _repository.Get()
+				.Where(p => p.ServiceCategory.Title == title)
+				.OrderBy(p => p.Id);
+		}
+
+		private ServicesIndexViewModel CreateNewsViewModelPagination(int currentPage, IEnumerable<Service> services)
+		{
+			var count = services.Count();
+			var servicesOnTheCurrentPage = services.Skip((currentPage - 1) * NewsOnPage).Take(NewsOnPage);
+
+			PageViewModel pageViewModel = new PageViewModel(count, currentPage, NewsOnPage);
+			return new ServicesIndexViewModel
 			{
-				services = _repository.Get().OrderBy(p => p.Id);
-				currentCategory = "All Categories";
-			}
-			else
-			{
-				services = _repository.Get()
-					.Where(p => p.ServiceCategory.Title == categoryName)
-					.OrderBy(p => p.Id);
-
-				currentCategory = ((ServiceCategoriesRepository)_categories).Get(categoryName).Title;
-			}
-
-			return View(services);
+				PageViewModel = pageViewModel,
+				Services = servicesOnTheCurrentPage
+			};
 		}
 
 		[Authorize(Roles = Roles.Editor)]
@@ -100,7 +112,6 @@ namespace Nature.Controllers
 			return View("ServicesForm", model);
 		}
 
-		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Details(int id)
 		{
 			var service = _repository.Get(id);

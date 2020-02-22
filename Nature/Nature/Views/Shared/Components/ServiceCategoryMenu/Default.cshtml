@@ -2,15 +2,15 @@
 
 <li class="dropdown nav-item">
 	<a asp-controller="Services" asp-action="Index" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">
-		Services <b class="caret"></b>
+		Услуги <b class="caret"></b>
 	</a>
 	<ul class="dropdown-menu">
 		<li>
 			<a asp-controller="Services"
 			   asp-action="Index"
-			   asp-route-categoryName=""
+			   asp-route-title=""
 			   class="nav-link text-dark pl-3">
-				View all services
+				Все услуги
 			</a>
 		</li>
 		<li class="dropdown-divider"></li>
@@ -19,7 +19,7 @@
 		{
 			<li>
 				<a asp-controller="Services" asp-action="Index"
-				   asp-route-categoryName="@category.Title"
+				   asp-route-title="@category.Title"
 				   class="nav-link text-dark pl-3">
 					@category.Title
 				</a>

@@ -93,7 +93,6 @@ namespace Nature.Controllers
 			return View("NewsForm", news);
 		}
 
-		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Details(int id)
 		{
 			var news = _repository.Get(id);

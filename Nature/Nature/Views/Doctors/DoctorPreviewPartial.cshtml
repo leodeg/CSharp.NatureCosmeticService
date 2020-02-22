@@ -8,9 +8,12 @@
 			<h4>@Model.Contacts.Email</h4>
 			<h4>@Model.Contacts.Phone</h4>
 		</div>
-		<div class="card-footer">
-			<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Remove" asp-route-id="@Model.Id">Delete</a>
-			<a class="btn btn-dark" name="Delete" asp-controller="Doctors" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-		</div>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<div class="card-footer">
+				<a class="btn btn-danger" name="Delete" asp-controller="Doctors" asp-action="Remove" asp-route-id="@Model.Id">Удалить</a>
+				<a class="btn btn-dark" name="Edit" asp-controller="Doctors" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+			</div>
+		}
 	</div>
 </div>
