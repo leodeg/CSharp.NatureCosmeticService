@@ -1,0 +1,91 @@
+﻿@model ContactUsIndexViewModel
+
+@{
+	ViewData["Title"] = "Обратная связь";
+}
+
+<h2>Список оставленных контактов</h2>
+
+<!-- Search Widget -->
+<div class="card my-4">
+	<div class="card-body">
+		<div class="input-group form-inline">
+			<form asp-controller="ContactUs" asp-action="Index" method="get" role="form" enctype="multipart/form-data">
+				<input type="text" class="form-control w-auto" size="40" id="searchQuery" name="searchQuery" placeholder="Поиск по фамилии/имени...">
+				<input type="submit" class="btn btn-dark" value="Искать" />
+			</form>
+		</div>
+	</div>
+</div>
+
+<a class="btn btn-primary m-2" name="New" asp-controller="ContactUs" asp-action="New">Добавить контакт</a>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Фамилия</th>
+			<th>Имя</th>
+			<th>Телефон</th>
+			<th>Email</th>
+			<th>Действия</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.ContactUs.Any())
+		{
+			@foreach (var contact in Model.ContactUs)
+			{
+				@if (!contact.HasBeenRead)
+				{
+					<tr class="unread-color">
+						<td>@contact.LastName</td>
+						<td>@contact.FirstName</td>
+						<td>@contact.Phone</td>
+						<td>@contact.Email</td>
+						<td>
+							<a class="btn btn-primary" name="MarkReadUnread" asp-controller="ContactUs" asp-action="MarkReadUnread" asp-route-id="@contact.Id">@contact.GetReadState</a>
+							<a class="btn btn-primary" name="Details" asp-controller="ContactUs" asp-action="Details" asp-route-id="@contact.Id">Смотреть</a>
+							<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@contact.Id">Редактировать</a>
+							<a class="btn btn-danger" name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@contact.Id">Удалить</a>
+						</td>
+					</tr>
+				}
+				else
+				{
+					<tr>
+						<td>@contact.LastName</td>
+						<td>@contact.FirstName</td>
+						<td>@contact.Phone</td>
+						<td>@contact.Email</td>
+						<td>
+							<a class="btn btn-primary" name="MarkReadUnread" asp-controller="ContactUs" asp-action="MarkReadUnread" asp-route-id="@contact.Id">@contact.GetReadState</a>
+							<a class="btn btn-primary" name="Details" asp-controller="ContactUs" asp-action="Details" asp-route-id="@contact.Id">Смотреть</a>
+							<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@contact.Id">Редактировать</a>
+							<a class="btn btn-danger" name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@contact.Id">Удалить</a>
+						</td>
+					</tr>
+				}
+			}
+		}
+	</tbody>
+</table>
+
+
+<div class="container">
+	<!-- Pagination -->
+	<ul class="pagination justify-content-center mb-4">
+		@if (Model.PageViewModel.HasPreviousPage)
+		{
+			<li class="page-item">
+				<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Вперед</a>
+			</li>
+		}
+		@if (Model.PageViewModel.HasNextPage)
+		{
+			<li class="page-item">
+				<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Назад &rarr;</a>
+			</li>
+		}
+	</ul>
+</div>
+

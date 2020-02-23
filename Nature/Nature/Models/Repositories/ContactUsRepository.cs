@@ -57,8 +57,11 @@ namespace Nature.Models
 		public void SwitchIsContactWasReaded(int id)
 		{
 			var oldItem = context.ContactUs.SingleOrDefault(i => i.Id == id);
-			oldItem.HasBeenRead = !oldItem.HasBeenRead;
-			context.SaveChanges();
+			if (oldItem != null)
+			{
+				oldItem.HasBeenRead = !oldItem.HasBeenRead;
+				context.SaveChanges();
+			}
 		}
 
 		public bool Delete(int id)

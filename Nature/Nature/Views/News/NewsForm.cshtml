@@ -1,16 +1,16 @@
 ﻿@model News
 
 @{
-    ViewData["Title"] = "NewsForm";
+    ViewData["Title"] = "Добавить новость";
 }
 
 @if (Model.Id == 0)
 {
-    <h2>Create</h2>
+    <h2>Создать</h2>
 }
 else
 {
-    <h2>Edit: @Model.Title</h2>
+    <h2>Редактировать: @Model.Title</h2>
 }
 
 <div class="row">

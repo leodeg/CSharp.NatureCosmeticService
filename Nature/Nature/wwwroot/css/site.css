@@ -88,3 +88,7 @@ body {
     max-width: 300px;
     max-height: 300px;
 }
+
+.unread-color {
+    background-color: #f9fae8;
+}

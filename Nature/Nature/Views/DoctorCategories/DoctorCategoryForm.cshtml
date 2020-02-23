@@ -1,16 +1,16 @@
 ﻿@model DoctorCategory
 
 @{
-	ViewData["Title"] = "DoctorCategoryForm";
+	ViewData["Title"] = "Форма доктора";
 }
 
 @if (Model.Id == 0)
 {
-	<h2>Create a new category</h2>
+	<h2>Создать новую категорию</h2>
 }
 else
 {
-	<h2>Edit: @Model.Title</h2>
+	<h2>Редактировать: @Model.Title</h2>
 }
 
 <form asp-controller="DoctorCategories" asp-action="Save" method="post" role="form">

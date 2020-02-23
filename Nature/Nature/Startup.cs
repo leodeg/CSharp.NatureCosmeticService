@@ -68,7 +68,7 @@ namespace Nature
 
 			services.AddTransient<IRepository<News>, NewsRepository>();
 			services.AddTransient<IRepository<AboutUs>, AboutUsRepository>();
-			services.AddTransient<IRepository<Contacts>, ContactsRepository>();
+			services.AddTransient<IRepository<ContactUs>, ContactUsRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

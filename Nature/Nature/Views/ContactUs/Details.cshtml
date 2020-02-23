@@ -1,0 +1,20 @@
+﻿@model ContactUs
+@{
+    ViewData["Title"] = "Детали обратной связи";
+}
+
+<div class="jumbotron">
+    <h1 class="display-3">@Model.LastName @Model.FirstName</h1>
+    <p class="lead">
+        Email: @Model.Email <br />
+        Телефон: @Model.Phone
+    </p>
+    <hr class="my-4">
+    <p>
+        @Html.Raw(@Model.Description)
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+        <a class="btn btn-danger" name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@Model.Id">Удалить</a>
+    </p>
+</div>

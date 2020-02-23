@@ -12,7 +12,6 @@ using Nature.Models.ViewModels;
 
 namespace Nature.Controllers
 {
-
 	public class DoctorsController : Controller
 	{
 		private readonly IRepository<Doctor> _repository;
