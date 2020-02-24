@@ -6,7 +6,7 @@
 <h2>Редактировать информацию о компании</h2>
 
 <div class="row">
-	<div class="col-md-9">
+	<div class="col-md-12">
 		<form asp-controller="AboutUs" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
 			<div asp-validation-summary="All" class="text-danger"></div>
 
@@ -14,15 +14,15 @@
 
 			<div class="form-group">
 				<label asp-for="@Model.Title" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<input asp-for="@Model.Title" class="form-control" />
 					<span asp-validation-for="@Model.Title" class="text-danger"></span>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label asp-for="@Model.Contacts.Phone" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<label asp-for="@Model.Contacts.Phone" class="col-md-3 col-form-label"></label>
+				<div class="col-md-8">
 					<input asp-for="@Model.Contacts.Phone" class="form-control" />
 					<span asp-validation-for="@Model.Contacts.Phone" class="text-danger"></span>
 				</div>
@@ -30,7 +30,7 @@
 
 			<div class="form-group">
 				<label asp-for="@Model.Contacts.Email" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<input asp-for="@Model.Contacts.Email" class="form-control" />
 					<span asp-validation-for="@Model.Contacts.Email" class="text-danger"></span>
 				</div>
@@ -38,7 +38,7 @@
 
 			<div class="form-group">
 				<label asp-for="@Model.Contacts.Country" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<input asp-for="@Model.Contacts.Country" class="form-control" />
 					<span asp-validation-for="@Model.Contacts.Country" class="text-danger"></span>
 				</div>
@@ -46,7 +46,7 @@
 
 			<div class="form-group">
 				<label asp-for="@Model.Contacts.City" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<input asp-for="@Model.Contacts.City" class="form-control" />
 					<span asp-validation-for="@Model.Contacts.City" class="text-danger"></span>
 				</div>
@@ -54,7 +54,7 @@
 
 			<div class="form-group">
 				<label asp-for="@Model.Contacts.Address" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-12">
 					<input asp-for="@Model.Contacts.Address" class="form-control" />
 					<span asp-validation-for="@Model.Contacts.Address" class="text-danger"></span>
 				</div>
@@ -62,7 +62,7 @@
 
 			<div class="form-group">
 				<label asp-for="@Model.Description" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-12">
 					<textarea asp-for="@Model.Description" id="text-editor" rows="5" class="form-control"></textarea>
 					<span asp-validation-for="@Model.Description" class="text-danger"></span>
 				</div>

@@ -30,6 +30,8 @@ namespace Nature.Models
 
 		public void Create(ContactUs item)
 		{
+			item.UploadTime = DateTime.Now;
+			item.EditTime = DateTime.Now;
 			context.ContactUs.Add(item);
 			context.SaveChanges();
 		}
@@ -50,6 +52,7 @@ namespace Nature.Models
 			oldItem.Email = item.Email;
 			oldItem.Description = item.Description;
 			oldItem.HasBeenRead = item.HasBeenRead;
+			oldItem.EditTime = DateTime.Now;
 
 			context.SaveChanges();
 		}

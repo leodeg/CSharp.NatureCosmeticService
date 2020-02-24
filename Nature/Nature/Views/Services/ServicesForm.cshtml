@@ -6,11 +6,11 @@
 
 @if (Model.Service.Id == 0)
 {
-	<h2>Create</h2>
+	<h2>Создать</h2>
 }
 else
 {
-	<h2>Edit: @Model.Service.Title</h2>
+	<h2>Редактировать: @Model.Service.Title</h2>
 }
 
 <div class="row">
@@ -22,7 +22,7 @@ else
 
 			<div class="form-group">
 				<label asp-for="@Model.Service.Title" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<input asp-for="@Model.Service.Title" class="form-control" />
 					<span asp-validation-for="@Model.Service.Title" class="text-danger"></span>
 				</div>
@@ -30,7 +30,7 @@ else
 
 			<div class="form-group">
 				<label asp-for="@Model.Service.Price" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<input asp-for="@Model.Service.Price" class="form-control" />
 					<span asp-validation-for="@Model.Service.Price" class="text-danger"></span>
 				</div>
@@ -38,7 +38,7 @@ else
 
 			<div class="form-group">
 				<label asp-for="@Model.Service.ServiceCategoryId" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<select class="form-control" asp-for="@Model.Service.ServiceCategoryId" asp-items="@(new SelectList(Model.ServiceCategories, "Id", "Title"))">
 						<option>Please select category</option>
 					</select>
@@ -48,7 +48,7 @@ else
 
 			<div class="form-group">
 				<label asp-for="@Model.Service.Description" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
+				<div class="col-md-12">
 					<textarea asp-for="@Model.Service.Description" id="text-editor" rows="5" class="form-control"></textarea>
 					<span asp-validation-for="@Model.Service.Description" class="text-danger"></span>
 				</div>

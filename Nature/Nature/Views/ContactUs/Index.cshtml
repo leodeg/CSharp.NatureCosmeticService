@@ -43,8 +43,8 @@
 						<td>@contact.Phone</td>
 						<td>@contact.Email</td>
 						<td>
-							<a class="btn btn-primary" name="MarkReadUnread" asp-controller="ContactUs" asp-action="MarkReadUnread" asp-route-id="@contact.Id">@contact.GetReadState</a>
-							<a class="btn btn-primary" name="Details" asp-controller="ContactUs" asp-action="Details" asp-route-id="@contact.Id">Смотреть</a>
+							<a class="btn btn-primary" data-toggle="tooltip" title="Отметить прочитанным/непрочитанным" name="MarkReadUnread" asp-controller="ContactUs" asp-action="MarkReadUnread" asp-route-id="@contact.Id">@contact.GetReadState</a>
+							<a class="btn btn-primary" data-toggle="tooltip" title="Смотреть детальную информацию" name="Details" asp-controller="ContactUs" asp-action="Details" asp-route-id="@contact.Id">Смотреть</a>
 							<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@contact.Id">Редактировать</a>
 							<a class="btn btn-danger" name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@contact.Id">Удалить</a>
 						</td>
@@ -58,8 +58,8 @@
 						<td>@contact.Phone</td>
 						<td>@contact.Email</td>
 						<td>
-							<a class="btn btn-primary" name="MarkReadUnread" asp-controller="ContactUs" asp-action="MarkReadUnread" asp-route-id="@contact.Id">@contact.GetReadState</a>
-							<a class="btn btn-primary" name="Details" asp-controller="ContactUs" asp-action="Details" asp-route-id="@contact.Id">Смотреть</a>
+							<a class="btn btn-primary" data-toggle="tooltip" title="Отметить прочитанным/непрочитанным" name="MarkReadUnread" asp-controller="ContactUs" asp-action="MarkReadUnread" asp-route-id="@contact.Id">@contact.GetReadState</a>
+							<a class="btn btn-primary" data-toggle="tooltip" title="Смотреть детальную информацию" name="Details" asp-controller="ContactUs" asp-action="Details" asp-route-id="@contact.Id">Смотреть</a>
 							<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@contact.Id">Редактировать</a>
 							<a class="btn btn-danger" name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@contact.Id">Удалить</a>
 						</td>

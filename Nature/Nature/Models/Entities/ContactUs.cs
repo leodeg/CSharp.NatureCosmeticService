@@ -38,6 +38,14 @@ namespace Nature.Models
 		[Display(Name = "Прочитано?")]
 		public bool HasBeenRead { get; set; }
 
+		[DataType(DataType.Date)]
+		[Display(Name = "Время заявки")]
+		public DateTime UploadTime { get; set; }
+
+		[DataType(DataType.Date)]
+		[Display(Name = "Время последнего редактирования")]
+		public DateTime EditTime { get; set; }
+
 		[NotMapped]
 		public string GetReadState
 		{
