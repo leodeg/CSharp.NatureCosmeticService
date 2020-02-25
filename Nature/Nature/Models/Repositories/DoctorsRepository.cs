@@ -46,7 +46,7 @@ namespace Nature.Models
 			if (item == null)
 				throw new ArgumentNullException();
 
-			var oldItem = context.Doctors.Include(c => c.Contacts).Include(c => c.DoctorCategory).SingleOrDefault(item => item.Id == item.Id);
+			var oldItem = context.Doctors.Include(c => c.Contacts).Include(c => c.DoctorCategory).SingleOrDefault(i => i.Id == item.Id);
 
 			if (oldItem == null)
 				throw new ArgumentOutOfRangeException("Can't find and update item with id: " + item.Id);

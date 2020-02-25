@@ -92,3 +92,7 @@ body {
 .unread-color {
     background-color: #f9fae8;
 }
+
+.js-delete  {
+    color: white;
+}

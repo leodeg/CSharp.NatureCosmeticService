@@ -24,11 +24,9 @@
 		<p>
 			@Html.Raw(@Model.Description)
 		</p>
-		<p class="lead">
-		<p>@Model.Contacts.Phone</p>
-		<p>@Model.Contacts.Email</p>
-		<p>@Model.Contacts.Address</p>
-		<a class="btn btn-primary" href="#!" role="button">Learn more</a>
-		</p>
+		<hr class="my-4">
+		<p>Телефон: @Model.Contacts.Phone</p>
+		<p>Email: @Model.Contacts.Email</p>
+		<p>Наш адрес: @Model.Contacts.Address</p>
 	</div>
 }

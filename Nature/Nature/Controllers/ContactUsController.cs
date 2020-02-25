@@ -12,7 +12,7 @@ namespace Nature.Controllers
 	public class ContactUsController : Controller
 	{
 		private readonly IRepository<ContactUs> _repository;
-		private const int NewsOnPage = 10;
+		private const int NewsOnPage = 50;
 
 		public ContactUsController(IRepository<ContactUs> repository)
 		{

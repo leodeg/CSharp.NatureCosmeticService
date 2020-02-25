@@ -3,7 +3,7 @@
 	ViewData["Title"] = "Детали обратной связи";
 }
 
-<div class="jumbotron">
+<div class="jumbotron" id="edit">
 	<h1 class="display-3">@Model.LastName @Model.FirstName</h1>
 	<p class="lead">
 		Email: @Model.Email <br />
@@ -29,6 +29,6 @@
 	<hr class="my-4">
 	<p class="lead">
 		<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
-		<a class="btn btn-danger" name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@Model.Id">Удалить</a>
+		<a class="btn btn-danger " name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');">Удалить</a>
 	</p>
 </div>

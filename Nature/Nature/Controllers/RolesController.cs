@@ -36,7 +36,7 @@ namespace Nature.Controllers
 		[Authorize(Roles = Roles.Administrator)]
 		public IActionResult Create() => View();
 
-		[Authorize(Roles.Administrator)]
+		[Authorize(Roles = Roles.Administrator)]
 		[HttpPost]
 		public async Task<IActionResult> Create(string name)
 		{
