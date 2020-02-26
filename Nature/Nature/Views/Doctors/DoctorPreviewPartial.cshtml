@@ -1,16 +1,28 @@
 ﻿@model Doctor
 
-<div class="col-md-4 mb-5">
-	<div class="card h-100">
-		<img class="img-fluid w-100" src="@Model.ImagePath" alt="@Model.FirstName Thumbnail" />
+<div class="col-md-4 mb-5 px-2">
+	<div class="card h-100 border-0">
+		<div class="g-item-doctors-details" style="background-image:url(@Model.ImagePathLink)"></div>
 		<div class="card-body">
-			<h4><a asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.Id">@Model.FirstName @Model.LastName</a></h4>
-			<h4>@Model.Contacts.Email</h4>
-			<h4>@Model.Contacts.Phone</h4>
+			<p>@Model.DoctorCategory.Title</p>
+			<hr class="divider" />
+			<h4 class="mb-3">@Model.FirstName @Model.LastName</h4>
+			@if (Model.ShortDescription == null)
+			{
+				<p>Описание отсутствует</p>
+			}
+			else
+			{
+				<p>@Model.ShortDescription</p>
+			}
 		</div>
+		<div class="text-center mb-3">
+			<a class="btn btn-custom-primary mb-3" asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.Id">Смотреть</a>
+		</div>
+
 		@if (User.Identity.IsAuthenticated)
 		{
-			<div class="card-footer">
+			<div class="card-footer text-center">
 				<a class="btn btn-danger" name="Delete" asp-controller="Doctors" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash-alt"></i></a>
 				<a class="btn btn-warning" name="Edit" asp-controller="Doctors" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i></a>
 			</div>

@@ -123,6 +123,13 @@ a {
 		color: #ccb169;
 	}
 
+.card:hover {
+	background: #fff;
+	-webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
+	-moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
+	box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
+}
+
 .btn {
 	cursor: pointer;
 	-webkit-border-radius: 0px;
@@ -179,14 +186,14 @@ a {
 			}
 
 
-	.btn.btn-primary {
+	.btn.btn-custom-primary {
 		background: #d9bf77 !important;
 		border: 1px solid #d9bf77 !important;
 		color: #fff;
 		padding: 16px 16px 16px 16px !important;
 	}
 
-		.btn.btn-primary:hover {
+		.btn.btn-custom-primary:hover {
 			background: #fff !important;
 			border-color: #d9bf77 !important;
 			color: #000;
@@ -208,8 +215,13 @@ a {
 
 .form-control {
 	border-radius: 0;
-	padding: 22px !important;
+	padding: 21.5px !important;
 }
+
+	.form-control:focus {
+		border-color: #d9bf77;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(217, 191, 119, 0.55);
+	}
 
 .news-data {
 	font-size: small;
@@ -347,22 +359,48 @@ a {
 	border-radius: 50%;
 }
 
-	.g-item-services:hover {
-		background-color: #d9bf77;
-		box-shadow: 0px 0px 0px 15px #d9bf77 inset;
-		border-color: #d9bf77;
-	}
+.g-item-services-details {
+	width: 250px;
+	height: 250px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+}
+
+.g-item-services:hover {
+	background-color: #d9bf77;
+	-webkit-box-shadow: 0px 0px 0px 10px rgba(217, 191, 119, 0.7) inset !important;
+	-moz-box-shadow: 0px 0px 0px 10px rgba(217, 191, 119, 0.7) inset !important;
+	box-shadow: 0px 0px 0px 10px rgba(217, 191, 119, 0.7) inset !important;
+	border-color: #d9bf77;
+}
+
+
+
+.g-item-doctors-details {
+	width: 100%;
+	height: 350px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 
 @media (min-width: 769px) {
-	.g-item-services {
+	.g-item-services, .g-item-services-details {
 		width: 200px;
 		height: 200px;
 	}
 }
 
 @media (min-width: 1200px) {
-	.g-item-services {
+	.g-item-services, .g-item-services-details {
 		width: 250px;
 		height: 250px;
 	}
+}
+
+.categories-menu-list li:hover {
+	background-color: #d9bf77 !important;
 }

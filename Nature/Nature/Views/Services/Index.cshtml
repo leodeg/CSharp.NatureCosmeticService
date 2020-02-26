@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="px-3">
-					<a class="btn btn-primary m-2" name="Index" asp-controller="ServiceCategories" asp-action="Index"><i class="fas fa-list"></i> Управление категориями</a>
+					<a class="btn btn-warning m-2" name="Index" asp-controller="ServiceCategories" asp-action="Index"><i class="fas fa-list"></i> Управление категориями</a>
 					<a class="btn btn-success m-2" name="New" asp-controller="Services" asp-action="New"><i class="fas fa-plus"></i> Добавить услугу</a>
 				</div>
 			</div>
@@ -32,18 +32,18 @@
 	</section>
 }
 
-<section class="hero-wrap hero-wrap-2 mb-3" style="background-image: url('../img/design/bg_2.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../img/design/bg_2.jpg');" data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
 			<div class="col-md-12 ftco-animate text-center">
-				<h1 class="mb-3 bread">Услуги</h1>
+				<h1 class="mb-3 bread">@ViewData["Title"]</h1>
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="services">
+<section class="services mt-4">
 	<div class="row">
 		<div class="col-lg-3 d-none d-lg-block order-2">
 			@await Component.InvokeAsync("ServiceVerticalMenu")

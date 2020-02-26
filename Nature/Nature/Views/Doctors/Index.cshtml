@@ -1,7 +1,7 @@
 ﻿@model DoctorsIndexViewModel
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Наши Мастера";
 }
 
 @if (User.Identity.IsAuthenticated)
@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="px-3">
-					<a class="btn btn-primary m-1" name="Index" asp-controller="DoctorCategories" asp-action="Index"><i class="fas fa-list"></i> Управление категориями</a>
+					<a class="btn btn-warning m-1" name="Index" asp-controller="DoctorCategories" asp-action="Index"><i class="fas fa-list"></i> Управление категориями</a>
 					<a class="btn btn-success m-1" name="Index" asp-controller="Doctors" asp-action="New"><i class="fas fa-plus"></i> Добавить сотрудника</a>
 				</div>
 			</div>
@@ -32,8 +32,19 @@
 	</section>
 }
 
+<section class="hero-wrap hero-wrap-2 mb-3" style="background-image: url('../img/design/bg_2.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+			<div class="col-md-12 ftco-animate text-center">
+				<h1 class="mb-3 bread">@ViewData["Title"]</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section id="doctors">
-	<div class="row">
+	<div class="row px-2">
 		<div class="col-lg-3 d-none d-lg-block order-2">
 			@await Component.InvokeAsync("DoctorsVerticalMenu")
 		</div>

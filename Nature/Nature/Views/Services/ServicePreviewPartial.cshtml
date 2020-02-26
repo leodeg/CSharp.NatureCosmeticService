@@ -1,15 +1,17 @@
 ﻿@model Service
 
 
-<div class="col-md-4 mb-5">
+<div class="col-md-4 mb-5 px-2">
 	<div class="card h-100 border-0">
-		<a class="d-block" asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">
+		<a class="mt-2 d-block" asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">
 			<div class="g-item-services m-auto" style="background-image:url('@Model.ImagePathLink');"></div>
 		</a>
 		<div class="card-body text-center">
 			<h4 class="mb-4">@Model.Title</h4>
 		</div>
-
+		<div class="text-center mb-3">
+			<a class="btn btn-custom-primary mb-3" asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">Смотреть</a>
+		</div>
 		@if (User.Identity.IsAuthenticated)
 		{
 			<div class="card-footer text-center">
