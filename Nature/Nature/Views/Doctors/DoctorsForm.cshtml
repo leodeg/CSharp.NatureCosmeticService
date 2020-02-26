@@ -4,140 +4,142 @@
 	ViewData["Title"] = "ServicesForm";
 }
 
-<div class="card">
-	<div class="card-header">
-		@if (Model.Doctor.Id == 0)
-		{
-			<h2>Новый Сотрудник</h2>
-		}
-		else
-		{
-			<h2>Редактировать: @Model.Doctor.FirstName @Model.Doctor.LastName</h2>
-		}
-	</div>
-	<div class="card-body">
-		<form asp-controller="Doctors" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
-			<div class="row">
-				<div class="col-lg-7">
-					<input asp-for="@Model.Doctor.Id" type="hidden" />
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+			@if (Model.Doctor.Id == 0)
+			{
+				<h2>Новый Сотрудник</h2>
+			}
+			else
+			{
+				<h2>Редактировать: @Model.Doctor.FirstName @Model.Doctor.LastName</h2>
+			}
+		</div>
+		<div class="card-body">
+			<form asp-controller="Doctors" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-lg-7">
+						<input asp-for="@Model.Doctor.Id" type="hidden" />
 
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.FirstName" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.FirstName" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.FirstName" class="text-danger"></span>
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.FirstName" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.FirstName" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.FirstName" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.LastName" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.LastName" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.LastName" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.MiddleName" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.MiddleName" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.MiddleName" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.Contacts.Phone" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.Contacts.Phone" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.Contacts.Phone" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.Contacts.Email" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.Contacts.Email" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.Contacts.Email" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.Contacts.Country" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.Contacts.Country" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.Contacts.Country" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.Contacts.City" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.Contacts.City" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.Contacts.City" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.Contacts.Address" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<input asp-for="@Model.Doctor.Contacts.Address" class="form-control" />
+								<span asp-validation-for="@Model.Doctor.Contacts.Address" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.DoctorCategoryId" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<select class="form-control" asp-for="@Model.Doctor.DoctorCategoryId" asp-items="@(new SelectList(Model.DoctorCategories, "Id", "Title"))">
+									<option>Please select category</option>
+								</select>
+								<span asp-validation-for="@Model.Doctor.DoctorCategoryId" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.Description" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<textarea asp-for="@Model.Doctor.Description" id="text-editor" rows="5" class="form-control"></textarea>
+								<span asp-validation-for="@Model.Doctor.Description" class="text-danger"></span>
+							</div>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.LastName" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.LastName" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.LastName" class="text-danger"></span>
+					<div class="col-lg-5">
+						<h4>Изображение</h4>
+						<div class="container text-center">
+							@if (string.IsNullOrEmpty(Model.Doctor.ImagePath))
+							{
+								<img src="https://via.placeholder.com/250x350" id="preview" class="img-thumbnail">
+							}
+							else
+							{
+								<img src="../@Model.Doctor.ImagePath" id="preview" class="img-thumbnail">
+							}
+						</div>
+
+						<div class="form-group">
+							<label asp-for="@Model.Doctor.ImagePath" class="col-md-12 col-form-label"></label>
+							<div class="col-md-12">
+								<div class="custom-file">
+									<input type="file" name="file" class="custom-file-input" id="customFile">
+									<label class="custom-file-label" for="customFile">Choose file</label>
+									<span asp-validation-for="@Model.Doctor.ImagePath" class="text-danger"></span>
+								</div>
+							</div>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.MiddleName" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.MiddleName" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.MiddleName" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.Contacts.Phone" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.Contacts.Phone" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.Contacts.Phone" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.Contacts.Email" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.Contacts.Email" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.Contacts.Email" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.Contacts.Country" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.Contacts.Country" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.Contacts.Country" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.Contacts.City" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.Contacts.City" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.Contacts.City" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.Contacts.Address" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<input asp-for="@Model.Doctor.Contacts.Address" class="form-control" />
-							<span asp-validation-for="@Model.Doctor.Contacts.Address" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.DoctorCategoryId" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<select class="form-control" asp-for="@Model.Doctor.DoctorCategoryId" asp-items="@(new SelectList(Model.DoctorCategories, "Id", "Title"))">
-								<option>Please select category</option>
-							</select>
-							<span asp-validation-for="@Model.Doctor.DoctorCategoryId" class="text-danger"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.Description" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<textarea asp-for="@Model.Doctor.Description" id="text-editor" rows="5" class="form-control"></textarea>
-							<span asp-validation-for="@Model.Doctor.Description" class="text-danger"></span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-5">
-					<h4>Изображение</h4>
-					<div class="container text-center">
-						@if (string.IsNullOrEmpty(Model.Doctor.ImagePath))
-						{
-							<img src="https://via.placeholder.com/250x350" id="preview" class="img-thumbnail">
-						}
-						else
-						{
-							<img src="../@Model.Doctor.ImagePath" id="preview" class="img-thumbnail">
-						}
-					</div>
-
-					<div class="form-group">
-						<label asp-for="@Model.Doctor.ImagePath" class="col-md-12 col-form-label"></label>
-						<div class="col-md-12">
-							<div class="custom-file">
-								<input type="file" name="file" class="custom-file-input" id="customFile">
-								<label class="custom-file-label" for="customFile">Choose file</label>
-								<span asp-validation-for="@Model.Doctor.ImagePath" class="text-danger"></span>
+					<div class="col-lg-12">
+						<div class="form-group">
+							<div class="col-md-12">
+								<input type="submit" class="btn btn-primary btn-block" value="Сохранить" />
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="col-lg-12">
-					<div class="form-group">
-						<div class="col-md-12">
-							<input type="submit" class="btn btn-primary btn-block" value="Сохранить" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
 

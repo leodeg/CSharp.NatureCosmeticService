@@ -3,6 +3,7 @@
 @{
 	ViewData["Title"] = @Model.Title;
 }
+<div class="container">
 
 	<div class="card col-md-12 border-0 pb-3 mb-0">
 		<div class="g-item-news-details" style="background-image:url('../@Model.ImagePathLink');"></div>
@@ -21,3 +22,4 @@
 			<p class="m-0 align-bottom">Редактировано @Model.EditDate.ToLongDateString()</p>
 		</div>
 	</div>
+</div>

@@ -91,6 +91,14 @@ body {
 /* Own Styles
 -------------------------------------------------- */
 
+.navbar-brand e {
+	font-size: larger;
+	color: #fff;
+	background-color: #d9bf77;
+	padding: 0px 10px;
+	border-radius: 50%;
+}
+
 .custom-image {
 	min-height: 100px;
 	min-width: 100px;
@@ -142,6 +150,8 @@ a {
 	letter-spacing: 2px;
 	font-weight: 600;
 	text-transform: uppercase;
+	padding: 12px 16px;
+	border-radius: 5px;
 }
 
 	.btn:hover, .btn:active, .btn:focus {
@@ -150,6 +160,7 @@ a {
 
 
 	.btn.btn-white {
+		border-radius: 0 !important;
 		background: #fff;
 		border: 1px solid #fff;
 		color: #000;
@@ -187,6 +198,7 @@ a {
 
 
 	.btn.btn-custom-primary {
+		border-radius: 0 !important;
 		background: #d9bf77 !important;
 		border: 1px solid #d9bf77 !important;
 		color: #fff;

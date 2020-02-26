@@ -3,40 +3,37 @@
 @{
 	ViewData["Title"] = "Форма услуг";
 }
+<div class="container">
 
-<div class="card">
-	<div class="card-header">
-		@if (Model.Id == 0)
-		{
-			<h2>Создать новую категорию услуг</h2>
-		}
-		else
-		{
-			<h2>Редактировать: @Model.Title</h2>
-		}
-	</div>
-	<div class="card-body">
-		<form asp-controller="ServiceCategories" asp-action="Save" method="post" role="form">
-			<input asp-for="@Model.Id" type="hidden" />
+	<div class="card">
+		<div class="card-header">
+			@if (Model.Id == 0)
+			{
+				<h2>Создать новую категорию услуг</h2>
+			}
+			else
+			{
+				<h2>Редактировать: @Model.Title</h2>
+			}
+		</div>
+		<div class="card-body">
+			<form asp-controller="ServiceCategories" asp-action="Save" method="post" role="form">
+				<input asp-for="@Model.Id" type="hidden" />
 
-			<div class="form-group">
-				<label asp-for="@Model.Title" class="col-md-2 col-form-label"></label>
-				<div class="col-md-5">
-					<input asp-for="@Model.Title" required class="form-control" />
-					<span asp-validation-for="@Model.Title" class="text-danger"></span>
+				<div class="form-group">
+					<label asp-for="@Model.Title" class="col-md-2 col-form-label"></label>
+					<div class="col-md-5">
+						<input asp-for="@Model.Title" required class="form-control" />
+						<span asp-validation-for="@Model.Title" class="text-danger"></span>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<div class="col-md-5">
-					<input type="submit" class="btn btn-success" value="Добавить" />
+				<div class="form-group">
+					<div class="col-md-5">
+						<input type="submit" class="btn btn-success" value="Добавить" />
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
-
-
-
-
-

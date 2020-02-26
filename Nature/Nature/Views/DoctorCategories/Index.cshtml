@@ -4,38 +4,40 @@
 	ViewData["Title"] = "Категории врачей";
 }
 
-<h1>Категории Сотрудников</h1>
-<hr class="divider" />
+<div class="container">
 
-<section id="actions">
-	<div class="container pb-3">
-		<a class="btn btn-success" name="New" asp-controller="DoctorCategories" asp-action="New"><i class="fas fa-plus"></i> Добавить категорию</a>
-	</div>
-</section>
+	<h1>Категории Сотрудников</h1>
+	<hr class="divider" />
 
-<section id="table">
-	<table id="serviceCategories" class="table table-bordered table-hover">
-		<thead>
-			<tr>
-				<th>Категория</th>
-				<th>Управление</th>
-			</tr>
-		</thead>
-		<tbody>
-			@if (Model.Any())
-			{
-				@foreach (var category in Model)
+	<section id="actions">
+		<div class="container pb-3">
+			<a class="btn btn-success" name="New" asp-controller="DoctorCategories" asp-action="New"><i class="fas fa-plus"></i> Добавить категорию</a>
+		</div>
+	</section>
+
+	<section id="table">
+		<table id="serviceCategories" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Категория</th>
+					<th>Управление</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Any())
 				{
-					<tr>
-						<th>@category.Title</th>
-						<th>
-							<a class="btn btn-warning" name="Edit" asp-controller="DoctorCategories" asp-action="Edit" asp-route-id="@category.Id"><i class="fas fa-edit"></i> Редактировать</a>
-							<a class="btn btn-danger" name="Remove" asp-controller="DoctorCategories" asp-action="Remove" asp-route-id="@category.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
-						</th>
-					</tr>
+					@foreach (var category in Model)
+					{
+						<tr>
+							<th>@category.Title</th>
+							<th>
+								<a class="btn btn-warning" name="Edit" asp-controller="DoctorCategories" asp-action="Edit" asp-route-id="@category.Id"><i class="fas fa-edit"></i> Редактировать</a>
+								<a class="btn btn-danger" name="Remove" asp-controller="DoctorCategories" asp-action="Remove" asp-route-id="@category.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
+							</th>
+						</tr>
+					}
 				}
-			}
-		</tbody>
-	</table>
-</section>
-
+			</tbody>
+		</table>
+	</section>
+</div>

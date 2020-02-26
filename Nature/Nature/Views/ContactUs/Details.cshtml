@@ -2,33 +2,35 @@
 @{
 	ViewData["Title"] = "Детали обратной связи";
 }
+<div class="container">
 
-<div class="jumbotron" id="edit">
-	<h1 class="display-3">@Model.LastName @Model.FirstName</h1>
-	<p class="lead">
-		Email: @Model.Email <br />
-		Телефон: @Model.Phone
-	</p>
+	<div class="jumbotron" id="edit">
+		<h1 class="display-3">@Model.LastName @Model.FirstName</h1>
+		<p class="lead">
+			Email: @Model.Email <br />
+			Телефон: @Model.Phone
+		</p>
 
-	<hr class="my-4">
-	<h5>Сообщение обратной связи:</h5>
-	@if (!string.IsNullOrEmpty(Model.Description))
-	{
-		<p>@Html.Raw(@Model.Description)</p>
-	}
-	else
-	{
-		<p>Сообщение отсутствует</p>
-	}
+		<hr class="my-4">
+		<h5>Сообщение обратной связи:</h5>
+		@if (!string.IsNullOrEmpty(Model.Description))
+		{
+			<p>@Html.Raw(@Model.Description)</p>
+		}
+		else
+		{
+			<p>Сообщение отсутствует</p>
+		}
 
-	<hr class="my-4">
-	<p>
-		<label asp-for="@Model.UploadTime"></label> @Model.UploadTime<br />
-		<label asp-for="@Model.EditTime"></label> @Model.EditTime<br />
-	</p>
-	<hr class="my-4">
-	<p class="lead">
-		<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
-		<a class="btn btn-danger " name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');">Удалить</a>
-	</p>
+		<hr class="my-4">
+		<p>
+			<label asp-for="@Model.UploadTime"></label> @Model.UploadTime<br />
+			<label asp-for="@Model.EditTime"></label> @Model.EditTime<br />
+		</p>
+		<hr class="my-4">
+		<p class="lead">
+			<a class="btn btn-primary" name="Edit" asp-controller="ContactUs" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+			<a class="btn btn-danger " name="Remove" asp-controller="ContactUs" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');">Удалить</a>
+		</p>
+	</div>
 </div>
