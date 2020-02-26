@@ -43,5 +43,8 @@ namespace Nature.Models
 				return Description;
 			}
 		}
+
+		public string ImagePathLink { get { return ImagePath.Replace("\\", "/"); } }
+
 	}
 }

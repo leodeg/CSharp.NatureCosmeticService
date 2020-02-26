@@ -1,21 +1,31 @@
 ﻿@model News
 
 <div class="col-lg-6">
-	<div class="card mb-4">
-		<img class="card-img-top" src="@Model.ImagePath" alt="Card image cap">
+	<div class="card border-0 mb-4">
+		<div class="g-item-news" style="background-image:url('@Model.ImagePathLink');">
+		</div>
 		<div class="card-body">
-			<h2 class="card-title">@Model.Title</h2>
-			<p class="card-text">@Html.Raw(@Model.ShortDescription)</p>
-			<a class="btn btn-dark" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Читать</a>
+			<a asp-controller="News" asp-action="Details" asp-route-id="@Model.Id"><h4> @Model.Title</h4></a>
+			<p class="card-text border-0">@Html.Raw(@Model.ShortDescription)</p>
+
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-sm-2 col-lg-4">
+						<a class="btn btn-white py-3 px-4" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Читать</a>
+					</div>
+					<div class="col-md-3 col-lg-8 text-md-right news-data mt-4">
+						<p class="m-0 align-bottom">@Model.UploadDate.ToLongDateString()</p>
+					</div>
+				</div>
+			</div>
+
 			@if (User.Identity.IsAuthenticated)
 			{
-				<a class="btn btn-warning" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i>Редактировать</a>
-				<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
+				<div class="col-lg-12 mt-2 text-center">
+					<a class="btn btn-warning" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i>Редактировать</a>
+					<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
+				</div>
 			}
-		</div>
-		<div class="card-footer text-muted">
-			Загружено @Model.UploadDate.ToLongDateString() <br />
-			Последнее редактирование @Model.EditDate.ToLongDateString() <br />
 		</div>
 	</div>
 </div>

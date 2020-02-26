@@ -58,12 +58,14 @@ namespace Nature.Controllers
 		}
 
 
+		[AllowAnonymous]
 		public ActionResult New()
 		{
 			var contact = new ContactUs();
 			return View("ContactUsForm", contact);
 		}
 
+		[AllowAnonymous]
 		[HttpPost]
 		public ActionResult Save(ContactUs model)
 		{

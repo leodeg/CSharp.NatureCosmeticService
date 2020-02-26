@@ -2,15 +2,17 @@
 
 
 <div class="col-md-4 mb-5">
-	<div class="card h-100">
-		<img class="img-fluid w-100" src="@Model.ImagePath" alt="@Model.Title Thumbnail" />
-		<div class="card-body">
-			<h4><a asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a></h4>
-			<h4>@Model.Price.ToString("c")</h4>
+	<div class="card h-100 border-0">
+		<a class="d-block" asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">
+			<div class="g-item-services m-auto" style="background-image:url('@Model.ImagePathLink');"></div>
+		</a>
+		<div class="card-body text-center">
+			<h4 class="mb-4">@Model.Title</h4>
 		</div>
+
 		@if (User.Identity.IsAuthenticated)
 		{
-			<div class="card-footer">
+			<div class="card-footer text-center">
 				<a class="btn btn-danger" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash-alt"></i></a>
 				<a class="btn btn-warning" name="Edit" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i></a>
 			</div>
