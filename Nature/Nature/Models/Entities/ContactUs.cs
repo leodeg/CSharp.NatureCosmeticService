@@ -32,7 +32,7 @@ namespace Nature.Models
 		public string Email { get; set; }
 
 		[DataType(DataType.MultilineText)]
-		[Display(Name = "Описание")]
+		[Display(Name = "Сообщение")]
 		public string Description { get; set; }
 
 		[Display(Name = "Прочитано?")]

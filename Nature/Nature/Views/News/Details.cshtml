@@ -9,6 +9,7 @@
 	<div class="card-body">
 		<h2 class="card-title">@Model.Title</h2>
 		<p class="card-text">@Html.Raw(@Model.Description)</p>
+		<a class="btn btn-primary btn-block py-2 mb-3" name="New" asp-controller="ContactUs" asp-action="New">Оставьте заявку</a>
 		@if (User.Identity.IsAuthenticated)
 		{
 			<a class="btn btn-primary" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
