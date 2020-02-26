@@ -1,5 +1,6 @@
 ﻿@model Service
 
+
 <div class="col-md-4 mb-5">
 	<div class="card h-100">
 		<img class="img-fluid w-100" src="@Model.ImagePath" alt="@Model.Title Thumbnail" />
@@ -10,8 +11,8 @@
 		@if (User.Identity.IsAuthenticated)
 		{
 			<div class="card-footer">
-				<a class="btn btn-danger" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');">Удалить</a>
-				<a class="btn btn-dark" name="Edit" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+				<a class="btn btn-danger" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash-alt"></i></a>
+				<a class="btn btn-warning" name="Edit" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i></a>
 			</div>
 		}
 	</div>

@@ -1,19 +1,21 @@
 ﻿@model News
 
-<div class="card mb-4">
-	<img class="card-img-top" src="@Model.ImagePath" alt="Card image cap">
-	<div class="card-body">
-		<h2 class="card-title">@Model.Title</h2>
-		<p class="card-text">@Html.Raw(@Model.ShortDescription)</p>
-		<a class="btn btn-dark" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Читать</a>
-		@if (User.Identity.IsAuthenticated)
-		{
-			<a class="btn btn-primary" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
-			<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');">Удалить</a>
-		}
-	</div>
-	<div class="card-footer text-muted">
-		Загружено @Model.UploadDate.ToLongDateString() <br />
-		Последнее редактирование @Model.EditDate.ToLongDateString() <br />
+<div class="col-lg-6">
+	<div class="card mb-4">
+		<img class="card-img-top" src="@Model.ImagePath" alt="Card image cap">
+		<div class="card-body">
+			<h2 class="card-title">@Model.Title</h2>
+			<p class="card-text">@Html.Raw(@Model.ShortDescription)</p>
+			<a class="btn btn-dark" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Читать</a>
+			@if (User.Identity.IsAuthenticated)
+			{
+				<a class="btn btn-warning" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i>Редактировать</a>
+				<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
+			}
+		</div>
+		<div class="card-footer text-muted">
+			Загружено @Model.UploadDate.ToLongDateString() <br />
+			Последнее редактирование @Model.EditDate.ToLongDateString() <br />
+		</div>
 	</div>
 </div>

@@ -4,55 +4,70 @@
 	ViewData["Title"] = "Index";
 }
 
-
-<div class="row">
-	<div class="col-sm-9 col-md-9 col-lg-9">
-		<div class="row">
-			@if (!@Model.Doctors.Any())
-			{
-				<h3>Пока что нет мастеров такой категории.</h3>
-			}
-			else
-			{
-
-				@foreach (var doctor in Model.Doctors)
-				{
-					<partial name="DoctorPreviewPartial" model="@doctor" />
-				}
-			}
-
-			<!-- Pagination -->
-
-		</div>
-		<ul class="pagination justify-content-center mb-4">
-			@if (Model.PageViewModel.HasPreviousPage)
-			{
-				<li class="page-item">
-					<a asp-controller="Doctors" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Назад</a>
-				</li>
-			}
-			@if (Model.PageViewModel.HasNextPage)
-			{
-				<li class="page-item">
-					<a asp-controller="Doctors" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Вперед &rarr;</a>
-				</li>
-			}
-		</ul>
-	</div>
-	<div class="col-sm-3 col-md-3 col-lg-3">
-		@if (User.Identity.IsAuthenticated)
-		{
-			<div class="card my-4">
-				<h5 class="card-header">Управление</h5>
-				<div class="card-body">
-					<div class="input-group">
-						<a class="btn btn-primary m-1" name="Index" asp-controller="DoctorCategories" asp-action="Index">Категории</a>
-						<a class="btn btn-primary m-1" name="Index" asp-controller="Doctors" asp-action="New">Добавить мастера</a>
-					</div>
+@if (User.Identity.IsAuthenticated)
+{
+	<!-- HEADER -->
+	<section id="header" class="py-2 bg-primary text-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>
+						<i class="fas fa-cog"></i> Управление сотрудниками
+					</h1>
 				</div>
 			</div>
-		}
-		@await Component.InvokeAsync("DoctorsVerticalMenu")
+		</div>
+	</section>
 
+	<!-- ACTIONS -->
+	<section id="actions" class="py-4 mb-4 bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="px-3">
+					<a class="btn btn-primary m-1" name="Index" asp-controller="DoctorCategories" asp-action="Index"><i class="fas fa-list"></i> Управление категориями</a>
+					<a class="btn btn-success m-1" name="Index" asp-controller="Doctors" asp-action="New"><i class="fas fa-plus"></i> Добавить сотрудника</a>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+<section id="doctors">
+	<div class="row">
+		<div class="col-lg-3 d-none d-lg-block order-2">
+			@await Component.InvokeAsync("DoctorsVerticalMenu")
+		</div>
+		<div class="col-md-12 col-lg-9 order-1">
+			<div class="row">
+				@if (!@Model.Doctors.Any())
+				{
+					<h3>Пока что нет мастеров такой категории.</h3>
+				}
+				else
+				{
+
+					@foreach (var doctor in Model.Doctors)
+					{
+						<partial name="DoctorPreviewPartial" model="@doctor" />
+					}
+				}
+			</div>
+
+			<!-- PAGINATION -->
+			<ul class="pagination justify-content-center mb-4">
+				@if (Model.PageViewModel.HasPreviousPage)
+				{
+					<li class="page-item">
+						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link"><i class="fas fa-arrow-left"></i> Назад</a>
+					</li>
+				}
+				@if (Model.PageViewModel.HasNextPage)
+				{
+					<li class="page-item">
+						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Вперед <i class="fas fa-arrow-right"></i></a>
+					</li>
+				}
+			</ul>
+		</div>
 	</div>
-</div>
+</section>

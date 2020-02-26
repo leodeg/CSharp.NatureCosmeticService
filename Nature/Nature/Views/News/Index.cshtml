@@ -4,88 +4,89 @@
 	ViewData["Title"] = "Новости";
 }
 
-<!-- Page Content -->
-<div class="container">
 
-	<div class="row">
-
-		<!-- Blog Entries Column -->
-		<div class="col-md-8">
-
-			<h1 class="my-4">
-				Новости
-			</h1>
-
-			<!-- Blog Post -->
-			@if (Model.News.Any())
-			{
-				@foreach (var news in Model.News)
-				{
-					<partial name="NewsPostPartial" model="@news" />
-				}
-			}
-			else
-			{
-				<h3>No news for now.</h3>
-			}
-
-			<!-- Pagination -->
-			<ul class="pagination justify-content-center mb-4">
-				@if (Model.PageViewModel.HasPreviousPage)
-				{
-					<li class="page-item">
-						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link">&larr; Вперед</a>
-					</li>
-				}
-				@if (Model.PageViewModel.HasNextPage)
-				{
-					<li class="page-item">
-						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Назад &rarr;</a>
-					</li>
-				}
-			</ul>
-
-		</div>
-
-		<!-- Sidebar Widgets Column -->
-		<div class="col-md-4">
-			@if (User.Identity.IsAuthenticated)
-			{
-				<!-- Manage Widget -->
-				<div class="card my-4">
-					<h5 class="card-header">Управление</h5>
-					<div class="card-body">
-						<div class="input-group">
-							<a class="btn btn-primary" name="Index" asp-controller="News" asp-action="New">Добавить Новость</a>
-						</div>
-					</div>
-				</div>
-			}
-			<!-- Search Widget -->
-			<div class="card my-4">
-				<h5 class="card-header">Поиск</h5>
-				<div class="card-body">
-					<div class="input-group form-inline">
-						<form asp-controller="News" asp-action="Index" method="get" role="form" enctype="multipart/form-data">
-							<input type="text" class="form-control w-auto" id="title" name="title" placeholder="Поиск по названию...">
-							<input type="submit" class="btn btn-dark" value="Искать" />
-						</form>
-					</div>
+@if (User.Identity.IsAuthenticated)
+{
+	<!-- HEADER -->
+	<section id="header" class="py-2 bg-primary text-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>
+						<i class="fas fa-cog"></i> Управление новостями
+					</h1>
 				</div>
 			</div>
+		</div>
+	</section>
 
-			<!-- Side Widget -->
-			<div class="card my-4">
-				<h5 class="card-header">Side Widget</h5>
-				<div class="card-body">
-					You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+	<!-- ACTIONS -->
+	<section id="actions" class="py-4 mb-4 bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="px-3">
+					<a class="btn btn-success" name="Index" asp-controller="News" asp-action="New"><i class="fas fa-plus"></i> Добавить Новость</a>
 				</div>
 			</div>
-
 		</div>
+	</section>
+}
 
+<!-- SEARCH -->
+<section id="search" class="py-4 mb-4 bg-light">
+	<div class="container">
+		<h1 class="my-4">
+			Новости
+		</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group form-inline">
+					<form asp-controller="News" asp-action="Index" method="get" role="form" enctype="multipart/form-data">
+						<input type="text" class="form-control" id="title" name="title" placeholder="Поиск по названию...">
+						<input type="submit" class="btn btn-dark" value="Искать" />
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- /.row -->
+</section>
 
-</div>
-<!-- /.container -->
+<section class="news">
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row">
+					<!-- NEWS POSTS -->
+					@if (Model.News.Any())
+					{
+						@foreach (var news in Model.News)
+						{
+							<partial name="NewsPostPartial" model="@news" />
+						}
+					}
+					else
+					{
+						<h3>No news for now.</h3>
+					}
+				</div>
+
+				<!-- PAGINATION -->
+				<ul class="pagination justify-content-center mb-4">
+					@if (Model.PageViewModel.HasPreviousPage)
+					{
+						<li class="page-item">
+							<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link"><i class="fas fa-arrow-left"></i> Новее</a>
+						</li>
+					}
+					@if (Model.PageViewModel.HasNextPage)
+					{
+						<li class="page-item">
+							<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Старее <i class="fas fa-arrow-right"></i></a>
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

@@ -4,25 +4,42 @@
 	ViewData["Title"] = "Список пользователей";
 }
 
-<h2>Список пользователей</h2>
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var user in Model)
-		{
-			<tr>
-				<td>@user.Email</td>
-				<td>
-					<a class="btn btn-sm btn-primary" asp-controller="Roles" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+<!-- HEADER -->
+<section id="header" class="py-2 bg-primary text-white">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>
+					<i class="fas fa-cog"></i> Список пользователей
+				</h1>
+			</div>
+		</div>
+	</div>
+</section>
 
-<a class="btn btn-dark" asp-controller="Roles" asp-action="Index">Список Ролей</a>
+<!-- BODY -->
+<section id="table">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Пользователь</th>
+				<th>Управление</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var user in Model)
+			{
+				<tr>
+					<td>@user.Email</td>
+					<td>
+						<a class="btn btn-sm btn-warning" asp-controller="Roles" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<a class="btn btn-primary" asp-controller="Roles" asp-action="Index"><i class="fas fa-arrow-left"></i> Список Ролей</a>
+</section>
+
+

@@ -18,7 +18,7 @@ namespace Nature.Controllers
 		private readonly IRepository<News> _repository;
 		private readonly IWebHostEnvironment _environment;
 
-		private const int NewsOnPage = 5;
+		private const int NewsOnPage = 6;
 
 		public NewsController(IRepository<News> repository, IWebHostEnvironment environment)
 		{

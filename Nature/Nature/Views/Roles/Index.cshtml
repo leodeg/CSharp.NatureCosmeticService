@@ -4,34 +4,72 @@
 	ViewData["Title"] = "Роли";
 }
 
-<h2>Список ролей</h2>
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
+<!-- HEADER -->
+<section id="header" class="py-2 bg-primary text-white">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>
+					<i class="fas fa-cog"></i> Список ролей
+				</h1>
+			</div>
+		</div>
+	</div>
+</section>
 
-		@foreach (var role in Model)
-		{
+<!-- BODY -->
+<section id="table">
+	<table class="table table-bordered table-hover">
+		<thead>
 			<tr>
-				<td>@role.Name</td>
-				<td>
-					<form asp-controller="Roles" asp-action="Delete" asp-route-id="@role.Id" method="post">
-						@if (role.Name != Roles.Administrator && role.Name != Roles.Editor)
-						{
-							<button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите это удалить?');">
-								Удалить
-							</button>
-						}
-					</form>
-				</td>
+				<th>Название роли</th>
+				<th>Управление</th>
 			</tr>
-		}
-	</tbody>
-</table>
-<a class="btn btn-dark" asp-controller="Roles" asp-action="Create">Добавить роль</a>
-<a class="btn btn-dark" asp-controller="Roles" asp-action="UserList">Список пользователей</a>
+		</thead>
+		<tbody>
+
+			@foreach (var role in Model)
+			{
+				<tr>
+					<td>@role.Name</td>
+					<td>
+						<form asp-controller="Roles" asp-action="Delete" asp-route-id="@role.Id" method="post">
+							@if (role.Name != Roles.Administrator && role.Name != Roles.Editor)
+							{
+								<button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Вы уверены, что хотите это удалить?');">
+									Удалить
+								</button>
+							}
+						</form>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal"><i class="fas fa-plus"></i> Добавить роль</a>
+	<a class="btn btn-primary" asp-controller="Roles" asp-action="UserList">Список пользователей <i class="fas fa-arrow-right"></i></a>
+
+	<div class="modal fade" id="addCategoryModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-success text-white">
+					<h5 class="modal-title">Добавить роль</h5>
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form asp-controller="Roles" asp-action="Create" method="post">
+						<div class="form-group">
+							<label for="name">Новая роль</label>
+							<input name="name" class="form-control" required />
+						</div>
+						<button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Добавить</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 
