@@ -21,7 +21,7 @@
 
 			@if (User.Identity.IsAuthenticated)
 			{
-				<div class="col-lg-12 mt-2 text-center">
+				<div class="col-lg-12 mt-3 text-center">
 					<a class="btn btn-warning" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i>Редактировать</a>
 					<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
 				</div>

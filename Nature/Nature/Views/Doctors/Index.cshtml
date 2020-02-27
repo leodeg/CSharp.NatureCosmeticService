@@ -52,7 +52,7 @@
 			<div class="row">
 				@if (!@Model.Doctors.Any())
 				{
-					<h3>Пока что нет мастеров такой категории.</h3>
+					<h3 class="text-center">Просим прощения, пока что нет ни одного мастера из данной категории.</h3>
 				}
 				else
 				{
@@ -69,13 +69,13 @@
 				@if (Model.PageViewModel.HasPreviousPage)
 				{
 					<li class="page-item">
-						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link"><i class="fas fa-arrow-left"></i> Назад</a>
+						<a asp-controller="Doctors" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="page-link"><i class="fas fa-arrow-left"></i> Назад</a>
 					</li>
 				}
 				@if (Model.PageViewModel.HasNextPage)
 				{
 					<li class="page-item">
-						<a asp-controller="News" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Вперед <i class="fas fa-arrow-right"></i></a>
+						<a asp-controller="Doctors" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="page-link">Вперед <i class="fas fa-arrow-right"></i></a>
 					</li>
 				}
 			</ul>

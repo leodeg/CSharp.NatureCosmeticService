@@ -28,9 +28,11 @@ namespace Nature.Models
 		[Display(Name = "Номер телефона")]
 		public string Phone { get; set; }
 
+		[Required]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 
+		[Required]
 		[DataType(DataType.MultilineText)]
 		[Display(Name = "Сообщение")]
 		public string Description { get; set; }

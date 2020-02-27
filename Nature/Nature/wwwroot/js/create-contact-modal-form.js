@@ -18,7 +18,7 @@ $(document).ready(function () {
 		}).fail(function () {
 			toastr.clear();
 			if (formData.indexOf('=&') > -1)
-				toastr.warning("Пожалуйста заполните форму.");
+				toastr.warning("Пожалуйста, заполните все поля формы.");
 		});
 		return false;
 	})

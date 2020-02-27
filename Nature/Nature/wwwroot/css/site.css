@@ -1,32 +1,8 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿
+/*-----------------------------------------------*/
+/* ---- HTML---- */
+/*-----------------------------------------------*/
 
-a.navbar-brand {
-	white-space: normal;
-	text-align: center;
-	word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-	color: #0366d6;
-}
-
-.btn-primary {
-	color: #fff;
-	background-color: #1b6ec2;
-	border-color: #1861ac;
-	border-radius: 0;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-	color: #fff;
-	background-color: #1b6ec2;
-	border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
 html {
 	font-size: 14px;
 }
@@ -37,25 +13,10 @@ html {
 	}
 }
 
-.border-top {
-	border-top: 1px solid #e5e5e5;
-}
+/*-----------------------------------------------*/
+/* ---- STICKY FOOTER AND FONTS ---- */
+/*-----------------------------------------------*/
 
-.border-bottom {
-	border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-	box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-	font-size: 1rem;
-	line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
 html {
 	position: relative;
 	min-height: 100%;
@@ -74,12 +35,16 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, display-3, display-4, .nav-link,
 	font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif !important;
 }
 
-.navbar {
-	position: static;
-	top: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
+.border-top {
+	border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+	box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 .footer {
@@ -92,8 +57,23 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, display-3, display-4, .nav-link,
 	line-height: 60px; /* Vertically center the text there */
 }
 
-/* Own Styles
--------------------------------------------------- */
+/*-----------------------------------------------*/
+/* ---- NAVBAR ---- */
+/*-----------------------------------------------*/
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: #fff;
+	background-color: #1b6ec2;
+	border-color: #1861ac;
+}
+
+.navbar {
+	position: static;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
 
 .navbar-brand e {
 	font-size: larger;
@@ -103,21 +83,33 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, display-3, display-4, .nav-link,
 	border-radius: 50%;
 }
 
-.custom-image {
-	min-height: 100px;
-	min-width: 100px;
-	height: auto;
-	width: 280px;
+a.navbar-brand {
+	white-space: normal;
+	text-align: center;
+	word-break: break-all;
 }
 
-.nature-img-preview {
-	min-height: 100px;
-	min-width: 100px;
-	height: 300px;
-	width: 300px;
-	max-width: 300px;
-	max-height: 300px;
+/*-----------------------------------------------*/
+/* ---- DEFAULT ---- */
+/*-----------------------------------------------*/
+
+.news-data {
+	font-size: small;
 }
+
+/*-----------------------------------------------*/
+/* ---- SOCIAL LINKS ---- */
+/*-----------------------------------------------*/
+
+.social-link {
+	padding: 10px;
+	color: #333;
+	font-size: large;
+}
+
+/*-----------------------------------------------*/
+/* ---- OVERRIDE BOOTSTRAP COLORS ---- */
+/*-----------------------------------------------*/
 
 .js-delete {
 	color: white;
@@ -130,7 +122,6 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, display-3, display-4, .nav-link,
 .error {
 	color: red;
 }
-
 
 a {
 	color: #d9bf77;
@@ -145,6 +136,108 @@ a {
 	-webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
 	-moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
 	box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
+}
+
+.bg-primary {
+	background-color: #CEB473 !important;
+	border-color: #CEB473;
+}
+
+.bg-warning {
+	background-color: #F18805 !important;
+	border-color: #F18805;
+}
+
+.bg-not-read {
+	background-color: #dec88f !important;
+	border-color: #dec88f;
+}
+
+.btn-primary {
+	background-color: #CEB473 !important;
+	border-color: #CEB473 !important;
+	color: #fff;
+}
+
+	.btn-primary:hover {
+		background-color: #bba05c !important;
+		border-color: #bba05c;
+		color: #000;
+	}
+
+.btn-success {
+	background-color: #007A59 !important;
+	border-color: #007A59;
+	color: #fff;
+}
+
+	.btn-success:hover {
+		background-color: #00694d !important;
+		border-color: #00694d;
+		color: #000;
+	}
+
+.btn-danger {
+	background-color: #E46A55 !important;
+	border-color: #E46A55;
+	color: #fff;
+}
+
+	.btn-danger:hover {
+		background-color: #cb503a !important;
+		border-color: #cb503a;
+		color: #000;
+	}
+
+.btn-warning {
+	background-color: #F18805 !important;
+	border-color: #F18805;
+	color: #fff;
+}
+
+	.btn-warning:hover {
+		background-color: #d87800 !important;
+		border-color: #d87800;
+		color: #000;
+	}
+
+
+
+/*-----------------------------------------------*/
+/* ---- DROPDOWN MENUS ---- */
+/*-----------------------------------------------*/
+
+.dropdown-menu {
+	min-width: 12rem;
+	width: max-content;
+	padding: 1rem;
+}
+
+@media (max-width: 992) {
+	.dropdown-menu {
+		width: auto;
+	}
+}
+
+.categories-menu-list li:hover {
+	background-color: #d9bf77 !important;
+}
+
+
+/*-----------------------------------------------*/
+/* ---- BUTTONS ---- */
+/*-----------------------------------------------*/
+
+button.accept-policy {
+	font-size: 1rem;
+	line-height: inherit;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #1b6ec2;
+	border-color: #1861ac;
+	border-radius: 0;
 }
 
 .btn {
@@ -166,15 +259,14 @@ a {
 		outline: none;
 	}
 
-
 	.btn.btn-white {
 		border-radius: 0 !important;
 		background: #fff;
 		border: 1px solid #fff;
 		color: #000;
-		-webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
-		-moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
-		box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.40) !important;
+		-webkit-box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.40) !important;
+		-moz-box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.40) !important;
+		box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.40) !important;
 	}
 
 		.btn.btn-white span {
@@ -233,6 +325,11 @@ a {
 			color: #000;
 		}
 
+
+/*-----------------------------------------------*/
+/* ---- FORM CONTROLS ---- */
+/*-----------------------------------------------*/
+
 .form-control {
 	border-radius: 0;
 	padding: 21.5px;
@@ -244,11 +341,10 @@ a {
 		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(217, 191, 119, 0.55);
 	}
 
-.news-data {
-	font-size: small;
-}
 
+/*-----------------------------------------------*/
 /* ---- PAGE WRAP ---- */
+/*-----------------------------------------------*/
 
 .hero-wrap {
 	width: 100%;
@@ -354,6 +450,25 @@ a {
 			border: 1px solid rgba(255, 255, 255, 0.4);
 		}
 
+/*-----------------------------------------------*/
+/* ---- IMAGES ---- */
+/*-----------------------------------------------*/
+
+.custom-image {
+	min-height: 100px;
+	min-width: 100px;
+	height: auto;
+	width: 280px;
+}
+
+.nature-img-preview {
+	min-height: 100px;
+	min-width: 100px;
+	height: 300px;
+	width: 300px;
+	max-width: 300px;
+	max-height: 300px;
+}
 
 .g-item-news {
 	width: 100%;
@@ -431,9 +546,4 @@ a {
 		width: 100%;
 		height: 350px;
 	}
-}
-
-
-.categories-menu-list li:hover {
-	background-color: #d9bf77 !important;
 }

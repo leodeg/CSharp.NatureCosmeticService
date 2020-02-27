@@ -68,6 +68,13 @@ namespace Nature.Models
 				oldItem.Contacts.City = newItem.Contacts.City;
 				oldItem.Contacts.Address = newItem.Contacts.Address;
 				oldItem.Contacts.Country = newItem.Contacts.Country;
+
+				oldItem.Contacts.Twitter = newItem.Contacts.Twitter;
+				oldItem.Contacts.Facebook = newItem.Contacts.Facebook;
+				oldItem.Contacts.VKontakte = newItem.Contacts.VKontakte;
+				oldItem.Contacts.LinkedIn = newItem.Contacts.LinkedIn;
+				oldItem.Contacts.YouTube = newItem.Contacts.YouTube;
+				oldItem.Contacts.Website = newItem.Contacts.Website;
 			}
 		}
 

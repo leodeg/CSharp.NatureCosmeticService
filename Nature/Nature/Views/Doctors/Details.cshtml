@@ -16,7 +16,36 @@
 				<h4>Контакты</h4>
 				<h6>Email: @Model.Contacts.Email</h6>
 				<h6>Телефон: @Model.Contacts.Phone</h6>
+
+				<div class="row justify-content-center">
+					@if (!string.IsNullOrEmpty(Model.Contacts.Website))
+					{
+						<a class="social-link" href="@Model.Contacts.Website"><i class="fas fa-newspaper"></i></a>
+					}
+					@if (!string.IsNullOrEmpty(Model.Contacts.YouTube))
+					{
+						<a class="social-link" href="@Model.Contacts.YouTube"><i class="fab fa-youtube"></i></a>
+					}
+					@if (!string.IsNullOrEmpty(Model.Contacts.LinkedIn))
+					{
+						<a class="social-link" href="@Model.Contacts.LinkedIn"><i class="fab fa-linkedin"></i></a>
+					}
+					@if (!string.IsNullOrEmpty(Model.Contacts.Facebook))
+					{
+						<a class="social-link" href="@Model.Contacts.Facebook"><i class="fab fa-facebook"></i></a>
+					}
+					@if (!string.IsNullOrEmpty(Model.Contacts.VKontakte))
+					{
+						<a class="social-link" href="@Model.Contacts.VKontakte"><i class="fab fa-vk"></i></a>
+					}
+					@if (!string.IsNullOrEmpty(Model.Contacts.Twitter))
+					{
+						<a class="social-link" href="@Model.Contacts.Twitter"><i class="fab fa-twitter"></i></a>
+					}
+				</div>
+
 			</div>
+			
 			<a href="#" class="btn btn-custom-primary btn-block py-3 px-4 mb-3" data-toggle="modal" data-target="#add-contact-modal-view">Оставьте заявку</a>
 		</div>
 		<div class="col-lg-9  mt-4">
