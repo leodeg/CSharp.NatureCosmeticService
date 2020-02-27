@@ -7,7 +7,19 @@
 			<div class="g-item-services m-auto" style="background-image:url('@Model.ImagePathLink');"></div>
 		</a>
 		<div class="card-body text-center">
-			<h4 class="mb-4">@Model.Title</h4>
+			<p class="small">@Model.ServiceCategory.Title</p>
+
+			@if (@Model.Price > 0)
+			{
+				<p class="small">Цена: @Model.Price</p>
+			}
+			else
+			{
+				<p class="small">Цена: договорная</p>
+			}
+
+			<hr class="divider" />
+			<h4 class="mb-1">@Model.Title</h4>
 		</div>
 		<div class="text-center mb-3">
 			<a class="btn btn-custom-primary mb-3" asp-controller="Services" asp-action="Details" asp-route-id="@Model.Id">Смотреть</a>

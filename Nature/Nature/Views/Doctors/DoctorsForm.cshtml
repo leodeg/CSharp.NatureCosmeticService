@@ -1,10 +1,10 @@
 ﻿@model Nature.Models.ViewModels.DoctorsViewModel
 
 @{
-	ViewData["Title"] = "ServicesForm";
+	ViewData["Title"] = "Сотрудник";
 }
 
-<div class="container">
+<div class="container mt-3">
 	<div class="card">
 		<div class="card-header">
 			@if (Model.Doctor.Id == 0)
@@ -16,7 +16,7 @@
 				<h2>Редактировать: @Model.Doctor.FirstName @Model.Doctor.LastName</h2>
 			}
 		</div>
-		<div class="card-body">
+		<div class="card-body pt-3">
 			<form asp-controller="Doctors" asp-action="Save" method="post" role="form" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-lg-7">
@@ -89,7 +89,7 @@
 						<div class="form-group">
 							<label asp-for="@Model.Doctor.DoctorCategoryId" class="col-md-12 col-form-label"></label>
 							<div class="col-md-12">
-								<select class="form-control" asp-for="@Model.Doctor.DoctorCategoryId" asp-items="@(new SelectList(Model.DoctorCategories, "Id", "Title"))">
+								<select class="form-control py-0" asp-for="@Model.Doctor.DoctorCategoryId" asp-items="@(new SelectList(Model.DoctorCategories, "Id", "Title"))">
 									<option>Please select category</option>
 								</select>
 								<span asp-validation-for="@Model.Doctor.DoctorCategoryId" class="text-danger"></span>

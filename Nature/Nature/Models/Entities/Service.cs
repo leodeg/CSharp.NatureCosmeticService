@@ -35,6 +35,15 @@ namespace Nature.Models
 		[Display(Name = "Изображение")]
 		public string ImagePath { get; set; }
 
-		public string ImagePathLink { get { return ImagePath.Replace("\\", "/"); } }
+
+		public string ImagePathLink
+		{
+			get
+			{
+				if (ImagePath != null)
+					return ImagePath.Replace("\\", "/");
+				return ImagePath;
+			}
+		}
 	}
 }

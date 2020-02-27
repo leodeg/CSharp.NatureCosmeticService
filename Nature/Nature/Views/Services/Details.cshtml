@@ -11,14 +11,16 @@
 			<div class="col-lg-3">
 				<div class="g-item-services-details m-auto" style="background-image: url(../@Model.ImagePathLink)"></div>
 				<div class="figure-caption p-3 text-center">
-					<h3>@Model.Title</h3>
+					<h4>@Model.Title</h4>
+					<hr class="divider" />
+					<h5><a asp-controller="Services" asp-action="Index" asp-route-title="@Model.ServiceCategory.Title">@Model.ServiceCategory.Title</a></h5>
 					@if (Model.Price <= 1)
 					{
-						<h4>Цена: договорная</h4>
+						<h5>Цена: договорная</h5>
 					}
 					else
 					{
-						<h4>Цена: @Model.Price.ToString()</h4>
+						<h5>Цена: @Model.Price.ToString()</h5>
 					}
 				</div>
 				<a href="#" class="btn btn-custom-primary btn-block py-3 px-4 mb-3" data-toggle="modal" data-target="#add-contact-modal-view">Оставьте заявку</a>
@@ -36,8 +38,8 @@
 				@if (User.Identity.IsAuthenticated)
 				{
 					<p class="btn float-right">
-						<a class="btn btn-dark" name="Edit" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
-						<a class="btn btn-danger" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');">Удалить</a>
+						<a class="btn btn-warning" name="Edit" asp-controller="Services" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i> Редактировать</a>
+						<a class="btn btn-danger" name="Delete" asp-controller="Services" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
 					</p>
 				}
 			</div>

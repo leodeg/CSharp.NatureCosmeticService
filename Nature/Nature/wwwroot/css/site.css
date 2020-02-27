@@ -235,7 +235,8 @@ a {
 
 .form-control {
 	border-radius: 0;
-	padding: 21.5px !important;
+	padding: 21.5px;
+	color: #000;
 }
 
 	.form-control:focus {
@@ -396,17 +397,6 @@ a {
 	border-color: #d9bf77;
 }
 
-
-
-.g-item-doctors-details {
-	width: 100%;
-	height: 350px;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-
 @media (min-width: 769px) {
 	.g-item-services, .g-item-services-details {
 		width: 200px;
@@ -420,6 +410,29 @@ a {
 		height: 250px;
 	}
 }
+
+.g-item-doctors-details {
+	width: 100%;
+	height: 350px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+@media (min-width: 450px) {
+	.g-item-doctors-details {
+		width: 100%;
+		height: 600px;
+	}
+}
+
+@media (min-width: 992px) {
+	.g-item-doctors-details {
+		width: 100%;
+		height: 350px;
+	}
+}
+
 
 .categories-menu-list li:hover {
 	background-color: #d9bf77 !important;
