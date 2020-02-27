@@ -97,6 +97,15 @@ a.navbar-brand {
 	font-size: small;
 }
 
+#google-map {
+	height: 450px;
+	width: 100%;
+	border: 1px #ccb169 solid;
+	border-left: 0;
+	border-right: 0;
+	box-shadow: 0;
+}
+
 /*-----------------------------------------------*/
 /* ---- SOCIAL LINKS ---- */
 /*-----------------------------------------------*/
