@@ -3,6 +3,9 @@
 @{
 	ViewData["Title"] = @Model.Title;
 }
+
+<script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
+
 <div class="container mt-3">
 
 	<div class="card col-md-12 border-0 py-3 mb-0">
@@ -10,6 +13,21 @@
 		<div class="card-body">
 			<h2 class="card-title">@Model.Title</h2>
 			<p class="card-text">@Html.Raw(@Model.Description)</p>
+
+			<hr class="divider" />
+			<div class="col-lg-12">
+				<p>Поделиться</p>
+				<div class="row px-3">
+					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/share-button/" data-layout="button_count" data-size="large">
+						<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+					</div>
+					<a class="twitter-share-button ml-1 mr-1" href="https://twitter.com/intent/tweet?url=https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview" data-size="large" data-url="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview"><i class="fab fa-twitter"></i> Tweet </a>
+					<script type="text/javascript">document.write(VK.Share.button(false, { type: "round", text: "Share" }));</script>
+				</div>
+			</div>
+
+			<div id="fb-root"></div>
+			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=2856888197771508&autoLogAppEvents=1"></script>
 
 			@if (User.Identity.IsAuthenticated)
 			{

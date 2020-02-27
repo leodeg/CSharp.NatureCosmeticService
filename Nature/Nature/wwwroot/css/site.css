@@ -237,6 +237,20 @@ a {
 /* ---- BUTTONS ---- */
 /*-----------------------------------------------*/
 
+.twitter-share-button {
+	color: #fff !important;
+	background-color: #1b95e0;
+	padding: 4px 10px;
+	border-radius: 4px;
+	font-size: small;
+	text-align: center
+}
+
+.twitter-share-button:hover {
+	background-color: #1087d0;
+	text-decoration: none;
+}
+
 button.accept-policy {
 	font-size: 1rem;
 	line-height: inherit;
