@@ -52,13 +52,76 @@
 					@Html.Raw(@Model.Description)
 				</p>
 				<hr class="my-4">
-				<div class="form-group">
-					<p>Телефон: @Model.Contacts.Phone</p>
-					<p>Email: @Model.Contacts.Email</p>
-					<p>Наш адрес: @Model.Contacts.Address</p>
+				<h3 class="mb-3">Контакты</h3>
+				<div>
+					<p><i class="fas fa-phone"></i> Телефон: @Model.Contacts.Phone</p>
+					<p><i class="fas fa-inbox"></i> Email: @Model.Contacts.Email</p>
+					<p><i class="fas fa-map-marker-alt"></i> Наш адрес: @Model.Contacts.Address</p>
 				</div>
-				<a class="btn btn-custom-primary btn-block" name="New" asp-controller="ContactUs" asp-action="New">Оставьте заявку</a>
 			</div>
 		</div>
 	</div>
 </section>
+
+<section class="container" id="contact-us">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header text-center">
+				<h4>Оставьте заявку</h4>
+			</div>
+			<div class="card-body">
+				<form id="contact-modal-form" method="post" role="form">
+					<fieldset>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="firstName" class="col-form-label">Имя</label>
+									<input name="firstName" required class="form-control" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="lastName" class="col-form-label">Фамилия</label>
+									<input name="lastName" required class="form-control" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="phone" class="col-form-label">Телефон</label>
+									<input name="phone" required class="form-control" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="email" class="col-form-label">Email</label>
+									<input name="email" required class="form-control" />
+								</div>
+							</div>
+						</div>
+
+						<div class="col lg-12">
+							<div class="form-group">
+								<label for="message" class="col-form-label">Сообщение</label>
+								<textarea name="message" id="text-editor" rows="5" class="form-control"></textarea>
+							</div>
+						</div>
+
+						<div class="col-lg-12">
+							<div class="form-group">
+								<input id="button-submit" type="submit" class="btn btn-custom-primary btn-block" value="Отправить" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+	<script src="~/js/about-us-form.js" asp-append-version="true"></script>
+}

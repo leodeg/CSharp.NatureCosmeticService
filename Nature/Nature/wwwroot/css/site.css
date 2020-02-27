@@ -67,7 +67,11 @@ body {
 	margin-bottom: 60px;
 	background-color: #fafafa;
 	padding-bottom: 30px;
-	font-family: 'Oswald', Arial, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, display-3, display-4, .nav-link, .btn {
+	font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif !important;
 }
 
 .navbar {
@@ -119,9 +123,14 @@ body {
 	color: white;
 }
 
-.input-validation-error {
+.input-validation-error, .error {
 	border-color: red;
 }
+
+.error {
+	color: red;
+}
+
 
 a {
 	color: #d9bf77;
@@ -151,7 +160,6 @@ a {
 	font-weight: 600;
 	text-transform: uppercase;
 	padding: 12px 16px;
-	border-radius: 5px;
 }
 
 	.btn:hover, .btn:active, .btn:focus {

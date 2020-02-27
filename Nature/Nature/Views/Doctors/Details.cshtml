@@ -13,7 +13,7 @@
 				<h5>Email: @Model.Contacts.Email</h5>
 				<h5>Телефон: @Model.Contacts.Phone</h5>
 			</div>
-			<a class="btn btn-custom-primary btn-block py-2" name="New" asp-controller="ContactUs" asp-action="New">Оставьте заявку</a>
+			<a href="#" class="btn btn-custom-primary btn-block py-3 px-4 mb-3" data-toggle="modal" data-target="#add-contact-modal-view">Оставьте заявку</a>
 		</div>
 		<div class="col-lg-9  mt-4">
 			@if (string.IsNullOrEmpty(Model.Description))

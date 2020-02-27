@@ -4,16 +4,21 @@
 	ViewData["Title"] = "Форма контактов";
 }
 
-@if (Model.Id > 0)
-{
-	<h2>Редактировать: @Model.FirstName @Model.LastName</h2>
-}
-<div class="container">
+
+<div class="container mt-3">
+
 
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header text-center">
-				<h4>Оставьте заявку</h4>
+				@if (Model.Id > 0)
+				{
+					<h4>Редактировать: @Model.FirstName @Model.LastName</h4>
+				}
+				else
+				{
+					<h4>Создать контакт</h4>
+				}
 			</div>
 			<div class="card-body">
 				<form asp-controller="ContactUs" asp-action="Save" method="post" role="form">
@@ -75,7 +80,7 @@
 					<div class="col-lg-12">
 						<div class="form-group">
 							<div>
-								<input type="submit" class="btn btn-primary btn-block" value="Отправить" />
+								<input type="submit" class="btn btn-custom-primary btn-block" value="Сохранить" />
 							</div>
 						</div>
 					</div>

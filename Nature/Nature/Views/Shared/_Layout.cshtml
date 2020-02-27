@@ -6,9 +6,11 @@
 	<title>@ViewData["Title"] - Nature</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/lib/toastr/toastr.css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 		  crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header class="sticky-top">
@@ -26,16 +28,21 @@
 			<div class="row">
 				<div class="col">
 					<p class="text-center mb-0 small">Copyright &copy; 2020 - Nature - <a href="https://github.com/leodeg">Leo Deg</a></p>
-					<a class="btn btn-custom-primary py-3 px-4 mb-3" name="New" asp-controller="ContactUs" asp-action="New">Оставьте заявку</a>
+					<a href="#" class="btn btn-custom-primary py-3 px-4 mb-3" data-toggle="modal" data-target="#add-contact-modal-view">Оставьте заявку</a>
 				</div>
 			</div>
 		</div>
 	</footer>
 
+	<partial name="_ContactUsModalFormPartial" />
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/toastr/toastr.min.js"></script>
 	<script src="~/lib/bootbox/bootbox.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/create-contact-modal-form.js"></script>
 	@RenderSection("Scripts", required: false)
 </body>
 </html>

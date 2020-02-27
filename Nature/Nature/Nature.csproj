@@ -17,7 +17,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Controllers\Api\" />
     <Folder Include="wwwroot\img\doctors\" />
     <Folder Include="wwwroot\img\news\" />
     <Folder Include="wwwroot\img\services\" />
