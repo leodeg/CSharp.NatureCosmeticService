@@ -88,6 +88,14 @@
 				</div>
 
 				<div class="form-group">
+					<label asp-for="@Model.Contacts.Instagram" class="col-md-12 col-form-label"></label>
+					<div class="col-md-8">
+						<input asp-for="@Model.Contacts.Instagram" class="form-control" />
+						<span asp-validation-for="@Model.Contacts.Instagram" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label asp-for="@Model.Contacts.LinkedIn" class="col-md-12 col-form-label"></label>
 					<div class="col-md-8">
 						<input asp-for="@Model.Contacts.LinkedIn" class="form-control" />

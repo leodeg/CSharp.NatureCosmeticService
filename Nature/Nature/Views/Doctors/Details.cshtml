@@ -26,6 +26,10 @@
 					{
 						<a class="social-link" href="@Model.Contacts.YouTube"><i class="fab fa-youtube"></i></a>
 					}
+					@if (!string.IsNullOrEmpty(Model.Contacts.Instagram))
+					{
+						<a class="social-link" href="@Model.Contacts.Instagram"><i class="fab fa-instagram"></i></a>
+					}
 					@if (!string.IsNullOrEmpty(Model.Contacts.LinkedIn))
 					{
 						<a class="social-link" href="@Model.Contacts.LinkedIn"><i class="fab fa-linkedin"></i></a>

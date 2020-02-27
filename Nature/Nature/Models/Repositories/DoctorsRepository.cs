@@ -83,6 +83,7 @@ namespace Nature.Models
 				oldItem.Contacts.Facebook = item.Contacts.Facebook;
 				oldItem.Contacts.VKontakte = item.Contacts.VKontakte;
 				oldItem.Contacts.LinkedIn = item.Contacts.LinkedIn;
+				oldItem.Contacts.Instagram = item.Contacts.Instagram;
 				oldItem.Contacts.YouTube = item.Contacts.YouTube;
 				oldItem.Contacts.Website = item.Contacts.Website;
 			}
