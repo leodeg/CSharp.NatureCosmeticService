@@ -391,6 +391,15 @@ button.accept-policy {
 /* ---- HOME PAGE ---- */
 /*-----------------------------------------------*/
 
+.big-logo {
+	width: 20%;
+}
+
+.logo-divider {
+	width: 50%;
+	border-top: 2px solid rgba(217, 191, 119, 0.5) !important;
+}
+
 #home-head-section {
 	background: url(/img/design/intro.jpg);
 	min-height: 850px;
@@ -413,7 +422,7 @@ button.accept-policy {
 	}
 
 	#home-head-section .home-inner {
-		padding-top: 300px;
+		padding-top: 200px;
 	}
 
 	#home-head-section .divider {
@@ -427,12 +436,16 @@ button.accept-policy {
 	}
 
 @media(max-width: 450px) {
+	.big-logo {
+		width: 50%;
+	}
+
 	#home-head-section, #home-head-section .dark-overlay {
 		min-height: 675px;
 	}
 
 		#home-head-section .home-inner {
-			padding-top: 200px;
+			padding-top: 100px;
 		}
 }
 
