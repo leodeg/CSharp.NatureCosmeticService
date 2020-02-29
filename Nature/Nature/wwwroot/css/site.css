@@ -3,6 +3,35 @@
 /* ---- HTML---- */
 /*-----------------------------------------------*/
 
+:root {
+	--blue: #007bff;
+	--indigo: #6610f2;
+	--purple: #6f42c1;
+	--pink: #e83e8c;
+	--red: #dc3545;
+	--orange: #fd7e14;
+	--yellow: #ffc107;
+	--green: #28a745;
+	--teal: #20c997;
+	--cyan: #17a2b8;
+	--white: #fff;
+	--gray: #6c757d;
+	--gray-dark: #343a40;
+	--primary: #d9bf77;
+	--secondary: #6c757d;
+	--success: #007A59;
+	--info: #17a2b8;
+	--warning: #F18805;
+	--danger: #E46A55;
+	--light: #f8f9fa;
+	--dark: #343a40;
+	--breakpoint-xs: 0;
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 992px;
+	--breakpoint-xl: 1200px;
+}
+
 html {
 	font-size: 14px;
 }
@@ -98,11 +127,9 @@ a.navbar-brand {
 }
 
 #google-map {
-	height: 450px;
+	height: 500px;
 	width: 100%;
-	border: 1px #ccb169 solid;
-	border-left: 0;
-	border-right: 0;
+	border: 0;
 	box-shadow: 0;
 }
 
@@ -133,11 +160,11 @@ a.navbar-brand {
 }
 
 a {
-	color: #d9bf77;
+	color: #b79d57;
 }
 
 	a:hover {
-		color: #ccb169;
+		color: #a38943;
 	}
 
 .card:hover {
@@ -211,11 +238,9 @@ a {
 	}
 
 
-
 /*-----------------------------------------------*/
 /* ---- DROPDOWN MENUS ---- */
 /*-----------------------------------------------*/
-
 .dropdown-menu {
 	min-width: 12rem;
 	width: max-content;
@@ -232,7 +257,6 @@ a {
 	background-color: #d9bf77 !important;
 }
 
-
 /*-----------------------------------------------*/
 /* ---- BUTTONS ---- */
 /*-----------------------------------------------*/
@@ -246,10 +270,10 @@ a {
 	text-align: center
 }
 
-.twitter-share-button:hover {
-	background-color: #1087d0;
-	text-decoration: none;
-}
+	.twitter-share-button:hover {
+		background-color: #1087d0;
+		text-decoration: none;
+	}
 
 button.accept-policy {
 	font-size: 1rem;
@@ -329,9 +353,23 @@ button.accept-policy {
 	}
 
 		.btn.btn-custom-primary:hover {
-			background: #fff !important;
+			background: 0 !important;
 			border-color: #d9bf77 !important;
-			color: #000;
+			color: #d9bf77;
+		}
+
+	.btn.btn-custom-outline-primary {
+		background: 0 !important;
+		border-color: #d9bf77 !important;
+		color: #d9bf77;
+		border: 1px solid #d9bf77 !important;
+		padding: 16px 16px 16px 16px !important;
+	}
+
+		.btn.btn-custom-outline-primary:hover {
+			border-radius: 0 !important;
+			background: #d9bf77 !important;
+			color: #fff;
 		}
 
 	.btn.btn-primary-search {
@@ -348,6 +386,71 @@ button.accept-policy {
 			color: #000;
 		}
 
+
+/*-----------------------------------------------*/
+/* ---- HOME PAGE ---- */
+/*-----------------------------------------------*/
+
+#home-head-section {
+	background: url(/img/design/intro.jpg);
+	min-height: 850px;
+	width: 100%;
+	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: top center;
+	margin-bottom: 6rem;
+}
+
+	#home-head-section .dark-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: 850px;
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+
+	#home-head-section .home-inner {
+		padding-top: 300px;
+	}
+
+	#home-head-section .divider {
+		width: 50%;
+		border-top: 2px solid rgba(217, 191, 119, 0.5);
+	}
+
+	#home-head-section .btn {
+		padding: 30px 30px !important;
+		font-size: medium;
+	}
+
+@media(max-width: 450px) {
+	#home-head-section, #home-head-section .dark-overlay {
+		min-height: 675px;
+	}
+
+		#home-head-section .home-inner {
+			padding-top: 200px;
+		}
+}
+
+@media(max-width: 360px) {
+	#home-head-section,
+	#home-head-section .dark-overlay {
+		min-height: 600px;
+		margin-bottom: 2rem;
+	}
+}
+
+
+.home-icon {
+	background-color: var(--primary);
+	border-radius: 50%;
+	padding: 30px;
+	color: #fff;
+}
 
 /*-----------------------------------------------*/
 /* ---- FORM CONTROLS ---- */
@@ -374,7 +477,7 @@ button.accept-policy {
 	position: relative;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: top center;
+	background-position: center;
 }
 
 	.hero-wrap .overlay {
@@ -383,18 +486,19 @@ button.accept-policy {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		width: 68%;
+		width: 100%;
 		content: '';
-		opacity: 0;
+		background-color: #333;
+		opacity: 0.0;
 	}
 
 
 	.hero-wrap.hero-wrap-2 {
-		height: 300px;
+		height: 250px;
 	}
 
 		.hero-wrap.hero-wrap-2 .slider-text {
-			height: 300px !important;
+			height: 250px !important;
 		}
 
 	.hero-wrap .slider-text {
@@ -459,7 +563,7 @@ button.accept-policy {
 		}
 
 		.hero-wrap .slider-text .bread {
-			font-size: 40px;
+			font-size: 50px;
 			color: #000;
 			line-height: 1.2;
 			font-weight: 200;

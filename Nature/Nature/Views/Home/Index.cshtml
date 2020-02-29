@@ -1,10 +1,92 @@
-﻿@{
+﻿@model Nature.Models.ViewModels.HomeViewModel
+
+@{
 	ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-	<div class="text-center">
-		<h1 class="display-4">Welcome</h1>
-		<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- TOP SECTION -->
+<section id="home-head-section">
+	<div class="dark-overlay">
+		<div class="home-inner container">
+			<div class="col-lg-12 my-auto text-center text-white ">
+				<hr class="divider" />
+				<h1 class="text-uppercase mb-4">Центр красоты и косметических услуг</h1>
+				<a href="#" class="btn btn-custom-outline-primary p-5" data-toggle="modal" data-target="#add-contact-modal-view">Оставьте заявку</a>
+			</div>
+		</div>
 	</div>
-</div>
+</section>
+
+<section id="actions">
+	<div class="container">
+		<div class="row text-dark">
+			<div class="py-3 px-4 col-lg-4 text-center">
+				<h1 id="actions"><i class="fas fa-leaf home-icon"></i></h1>
+				<h2>Услуги</h2>
+				<p>Мы поможем стать Вам еще красивее.</p>
+				<a asp-controller="Services" asp-action="Index" asp-route-title="" class="btn btn-custom-primary text-uppercase">Смотреть</a>
+			</div>
+			<div class="py-3 px-4 col-lg-4 text-center">
+				<h1 id="actions"><i class="fas fa-users home-icon"></i></h1>
+				<h2>Специалисты</h2>
+				<p>Наш коллектив — эксперты с многолетним опытом работы.</p>
+				<a asp-controller="Doctors" asp-action="Index" asp-route-title="" class="btn btn-custom-primary text-uppercase">Смотреть</a>
+			</div>
+			<div class="py-3 px-4 col-lg-4 text-center">
+				<h1 id="actions"><i class="fas fa-phone home-icon"></i></h1>
+				<h2>Контакты</h2>
+				<p>Свяжитесь с нами в удобное для Вас время. Или оставьте заявку и мы сами с Вами свяжемся.</p>
+				<a asp-controller="AboutUs" asp-action="Index" class="btn btn-custom-primary text-uppercase">Смотреть</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+@if (@Model.Services.Any())
+{
+	<section id="random-services" class="py-3">
+		<div class="container">
+			<h1>Услуги</h1>
+			<hr class="divider" />
+			<div class="row">
+				@foreach (var service in Model.Services)
+				{
+					<partial name="ServicePreviewPartial" model="@service" />
+				}
+			</div>
+		</div>
+	</section>
+}
+
+@if (@Model.Doctors.Any())
+{
+	<section id="random-services" class="py-3">
+		<div class="container">
+			<h1>Наши Мастера</h1>
+			<hr class="divider" />
+			<div class="row">
+				@foreach (var doctor in Model.Doctors)
+				{
+					<partial name="DoctorPreviewPartial" model="@doctor" />
+				}
+			</div>
+		</div>
+	</section>
+}
+
+@if (@Model.News.Any())
+{
+	<section id="last-news" class="py-3">
+		<div class="container">
+			<h1>Последние новости</h1>
+			<hr class="divider" />
+			<div class="row">
+				@foreach (var news in Model.News)
+				{
+					<partial name="NewsPostPartial" model="@news" />
+				}
+			</div>
+		</div>
+	</section>
+}

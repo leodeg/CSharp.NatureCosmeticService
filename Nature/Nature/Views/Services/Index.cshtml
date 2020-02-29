@@ -69,13 +69,13 @@
 				@if (Model.PageViewModel.HasPreviousPage)
 				{
 					<li class="page-item">
-						<a asp-controller="Services" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="btn btn-white py-3 px-4"><i class="fas fa-arrow-left"></i> Назад</a>
+						<a asp-controller="Services" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="btn btn-white py-3 px-4"><i class="fas fa-chevron-left"></i> Назад</a>
 					</li>
 				}
 				@if (Model.PageViewModel.HasNextPage)
 				{
 					<li class="page-item">
-						<a asp-controller="Services" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="btn btn-white py-3 px-4">Вперед <i class="fas fa-arrow-right"></i></a>
+						<a asp-controller="Services" asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="btn btn-white py-3 px-4">Вперед <i class="fas fa-chevron-right"></i></a>
 					</li>
 				}
 			</ul>
