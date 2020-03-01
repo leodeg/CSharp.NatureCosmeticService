@@ -15,13 +15,13 @@
 			<p class="card-text">@Html.Raw(@Model.Description)</p>
 
 			<hr class="divider" />
-			<div class="col-lg-12">
+			<div class="col-lg-12 mb-3">
 				<p>Поделиться</p>
 				<div class="row px-3">
-					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/share-button/" data-layout="button_count" data-size="large">
+					<div class="fb-share-button" data-href="https://@Context.Request.Host@Context.Request.PathBase/Details/@Model.Id" data-layout="button_count" data-size="large">
 						<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
 					</div>
-					<a class="twitter-share-button ml-1 mr-1" href="https://twitter.com/intent/tweet?url=https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview" data-size="large" data-url="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview"><i class="fab fa-twitter"></i> Tweet </a>
+					<a class="twitter-share-button ml-1 mr-1" href="https://twitter.com/intent/tweet?url=https://@Context.Request.Host@Context.Request.PathBase/Details/@Model.Id" data-size="large" data-url="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview"><i class="fab fa-twitter"></i> Tweet </a>
 					<script type="text/javascript">document.write(VK.Share.button(false, { type: "round", text: "Share" }));</script>
 				</div>
 			</div>
@@ -34,10 +34,12 @@
 				<a class="btn btn-warning" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i>Редактировать</a>
 				<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i>Удалить</a>
 			}
+
+			<div class="col-md-3 col-lg-8 text-md-right news-data ml-auto">
+				<p class="m-0 align-bottom">Загружено @Model.UploadDate.ToLongDateString()</p>
+				<p class="m-0 align-bottom">Редактировано @Model.EditDate.ToLongDateString()</p>
+			</div>
 		</div>
-		<div class="col-md-3 col-lg-8 text-md-right news-data ml-auto">
-			<p class="m-0 align-bottom">Загружено @Model.UploadDate.ToLongDateString()</p>
-			<p class="m-0 align-bottom">Редактировано @Model.EditDate.ToLongDateString()</p>
-		</div>
+		
 	</div>
 </div>

@@ -391,6 +391,13 @@ button.accept-policy {
 /* ---- HOME PAGE ---- */
 /*-----------------------------------------------*/
 
+.logo-brand {
+	font-family: 'Times New Roman', Times, serif;
+	letter-spacing: 5px !important;
+	color: var(--primary) !important;
+	text-transform: uppercase;
+}
+
 .big-logo {
 	width: 20%;
 }
@@ -402,14 +409,14 @@ button.accept-policy {
 
 #home-head-section {
 	background: url(/img/design/intro.jpg);
-	min-height: 850px;
+	min-height: 100vh;
 	width: 100%;
 	position: relative;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: top center;
-	margin-bottom: 6rem;
+	margin-bottom: 3rem;
 }
 
 	#home-head-section .dark-overlay {
@@ -417,7 +424,7 @@ button.accept-policy {
 		top: 0;
 		left: 0;
 		width: 100%;
-		min-height: 850px;
+		min-height: 100vh;
 		background-color: rgba(0, 0, 0, 0.7);
 	}
 
@@ -440,19 +447,19 @@ button.accept-policy {
 		width: 50%;
 	}
 
-	#home-head-section, #home-head-section .dark-overlay {
-		min-height: 675px;
+	#home-head-section .home-inner {
+		padding-top: 100px;
 	}
 
-		#home-head-section .home-inner {
-			padding-top: 100px;
-		}
+	#home-head-section,
+	#home-head-section .dark-overlay {
+		margin-bottom: 2rem;
+	}
 }
 
 @media(max-width: 360px) {
 	#home-head-section,
 	#home-head-section .dark-overlay {
-		min-height: 600px;
 		margin-bottom: 2rem;
 	}
 }

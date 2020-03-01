@@ -1,15 +1,17 @@
 ﻿@model News
 
 
-<div class="col-lg-6">
+<div class="col-lg-12">
 	<div class="card border-0 mb-4">
-		<div class="g-item-news" style="background-image:url('@Model.ImagePathLink');">
-		</div>
+		<div class="g-item-news" style="background-image:url('@Model.ImagePathLink');"></div>
 		<div class="card-body">
 			<a asp-controller="News" asp-action="Details" asp-route-id="@Model.Id"><h4> @Model.Title</h4></a>
-			<p class="card-text border-0">@Html.Raw(@Model.ShortDescription)</p>
 
-			<div class="col-lg-12 mb-3">
+			<div class="card-text border-0">
+				<div>@Html.Raw("<p>" + @Model.ShortDescription + "</p>")</div>
+			</div>
+
+			<div class="col-lg-12 mt-3 mb-3">
 				<div class="row">
 					<div class="col-sm-2 col-lg-4">
 						<a class="btn btn-white py-3 px-4" asp-controller="News" asp-action="Details" asp-route-id="@Model.Id">Читать</a>
@@ -19,14 +21,15 @@
 					</div>
 				</div>
 			</div>
+
 			<hr class="divider" />
 			<div class="col-lg-12">
 				<p>Поделиться</p>
 				<div class="row px-3">
-					<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/share-button/" data-layout="button_count" data-size="large">
+					<div class="fb-share-button" data-href="https://@Context.Request.Host@Context.Request.PathBase/Details/@Model.Id" data-layout="button_count" data-size="large">
 						<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
 					</div>
-					<a class="twitter-share-button ml-1 mr-1" href="https://twitter.com/intent/tweet?url=https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview" data-size="large" data-url="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview"><i class="fab fa-twitter"></i> Tweet </a>
+					<a class="twitter-share-button ml-1 mr-1" href="https://twitter.com/intent/tweet?url=https://@Context.Request.Host@Context.Request.PathBase/Details/@Model.Id" data-size="large" data-url="https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview"><i class="fab fa-twitter"></i> Tweet </a>
 					<script type="text/javascript">document.write(VK.Share.button(false, { type: "round", text: "Share" }));</script>
 				</div>
 			</div>
@@ -36,7 +39,7 @@
 
 			@if (User.Identity.IsAuthenticated)
 			{
-				<div class="col-lg-12 mt-3 text-center">
+				<div class="col-lg-12 mt-3 mb-3 text-center">
 					<a class="btn btn-warning" name="Edit" asp-controller="News" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit"></i>Редактировать</a>
 					<a class="btn btn-danger" name="Delete" asp-controller="News" asp-action="Remove" asp-route-id="@Model.Id" onclick="return confirm('Вы уверены, что хотите это удалить?');"><i class="fas fa-trash"></i> Удалить</a>
 				</div>

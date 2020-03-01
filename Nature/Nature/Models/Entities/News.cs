@@ -38,8 +38,8 @@ namespace Nature.Models
 			get
 			{
 				if (!string.IsNullOrEmpty(Description))
-					if (Description.Length > 200)
-						return Description.Substring(0, 200) + "...";
+					if (Description.Length > 500)
+						return Description.Substring(0, 500) + "...";
 				return Description;
 			}
 		}
