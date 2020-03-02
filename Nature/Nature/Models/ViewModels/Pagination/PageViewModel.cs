@@ -16,7 +16,7 @@ namespace Nature.Models
 			TotalPages = (int)Math.Ceiling(count / (double)pageSize);
 		}
 
-		public bool HasPreviousPage
+		public bool HasPreviousPage	
 		{
 			get
 			{

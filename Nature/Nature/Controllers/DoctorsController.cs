@@ -27,7 +27,6 @@ namespace Nature.Controllers
 			_environment = environment;
 		}
 
-
 		[HttpGet]
 		public IActionResult Index(int page = 1, string title = "")
 		{
@@ -63,7 +62,6 @@ namespace Nature.Controllers
 			};
 		}
 
-
 		[Authorize(Roles = Roles.Editor)]
 		public ActionResult New()
 		{
@@ -98,8 +96,6 @@ namespace Nature.Controllers
 
 			return RedirectToAction("Index", "Doctors");
 		}
-
-
 
 		[Authorize(Roles = Roles.Editor)]
 		public ActionResult Edit(int id)
