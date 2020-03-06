@@ -21,7 +21,7 @@ Website design inspired by Energen Bootstrap template - [Energen Demo Preview](h
    - Download MS SQL Server backup files - [download files](https://github.com/leodeg/CSharp.NatureCosmeticService/releases/download/version-0.1-alpha/NatureDB.bak)
    - Restore the database from backup file at SQL Server Management Studio
    - Load project from IDE
-   - (Don't remember to create new accounts with roles administrator and editor, if you create an empty database)
+   - (Don't forget to create a new accounts with roles administrator and editor, if you create a new empty database)
 
 #### How to run the application
   - Clone/Download the project - [download](https://github.com/leodeg/CSharp.NatureCosmeticService/archive/master.zip)
